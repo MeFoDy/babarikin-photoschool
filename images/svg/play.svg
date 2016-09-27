@@ -1,18 +1,19 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="105.000000pt" height="105.000000pt" viewBox="0 0 105.000000 105.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.10, written by Peter Selinger 2001-2011
-</metadata>
-<g transform="translate(0.000000,105.000000) scale(0.050000,-0.050000)"
-fill="#000000" stroke="none">
-<path d="M805 2071 c-793 -192 -1072 -1185 -495 -1761 656 -656 1790 -187
-1790 740 0 670 -645 1179 -1295 1021z m599 -90 c726 -277 860 -1270 236 -1730
--524 -385 -1291 -161 -1521 445 -299 787 500 1586 1285 1285z"/>
-<path d="M840 1050 c0 -311 4 -353 31 -342 43 16 589 333 589 342 0 9 -546
-326 -589 342 -27 11 -31 -31 -31 -342z"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="39.409px" height="39.41px" viewBox="0 0 39.409 39.41" enable-background="new 0 0 39.409 39.41" xml:space="preserve">
+<g>
+	<defs>
+		<rect id="SVGID_1_" y="0" width="39.409" height="39.409"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  overflow="visible"/>
+	</clipPath>
+	
+		<circle clip-path="url(#SVGID_2_)" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" cx="19.705" cy="19.705" r="19.205"/>
+	<polygon clip-path="url(#SVGID_2_)" fill="#FFFFFF" points="26.604,19.705 16.14,13.663 16.14,25.747 	"/>
+	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" points="
+		26.604,19.705 16.14,13.663 16.14,25.747 	"/>
 </g>
 </svg>
