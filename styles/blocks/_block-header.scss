@@ -1,9 +1,15 @@
 @import "../common/colors";
+@import "../common/mixins";
 
 .nd-block-header {
     $block-header-bottom-line-width: 50px;
 
     padding-top: 100px;
+
+    @include respond-to(phones) {
+        padding-top: 50px;
+    }
+
 
     &--no-padding {
         padding: 0;
@@ -16,6 +22,11 @@
         padding: 0 0 20px;
         position: relative;
         text-align: center;
+
+        @include respond-to(phones) {
+            font-size: 3rem;
+        }
+
 
         &::after {
             border-bottom: 2px solid $color--primary;

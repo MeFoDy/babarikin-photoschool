@@ -14,7 +14,7 @@ $(function() {
         transitionIn: 'fadeInDown',
         transitionOut: 'fadeOutDown'
     });
-    $("#nd-free-lesson-form, #nd-courses-form, #nd-call-form").iziModal({
+    $("#nd-free-lesson-form, #nd-courses-form, #nd-call-form, #nd-success-form, #nd-menu-form").iziModal({
         width: '750px',
         padding: 0,
         radius: 0,
@@ -40,6 +40,12 @@ $(function() {
     }, {
         trigger: '.nd-call-form__trigger',
         target: '#nd-call-form'
+    }, {
+        trigger: '.TODO',
+        target: '#nd-success-form'
+    }, {
+        trigger: '.nd-menu-form__trigger',
+        target: '#nd-menu-form'
     }];
     iziForms.forEach(function(iziForm) {
         $(document).on('click', iziForm.trigger, function(event) {
@@ -63,6 +69,19 @@ $(function() {
             .removeClass('nd-video')
             .addClass('nd-video__embedded');
         $(window).trigger('resize');
+    });
+
+    // Submit button handler
+    $(document).on('click', '.nd-contact-form__btn', function(event) {
+        var $container = $(this).parent('.nd-contact-form');
+        var phone = $container.find('input[id$="__phone"]').val();
+        var name = $container.find('input[id$="__name"]').val();
+        if (phone) {
+            $('input[id$="__phone"]').val(phone);
+        }
+        if (name) {
+            $('input[id$="__name"]').val(name);
+        }
     });
 
     // Scrollup button

@@ -4,15 +4,20 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Фотошкола Павла Бабарыкина</title>
+	<link rel="shortcut icon" type="image/x-icon" href="images/png/favicon.png">
+	<link rel="icon" type="image/x-icon" href="images/png/favicon.png">
 	<link rel="stylesheet" href="styles/vendors/normalize.css">
 	<link rel="stylesheet" href="styles/vendors/iziModal.min.css">
-	<link rel="stylesheet" href="styles/nd-blenda-icons.css">
+	<link rel="stylesheet" href="styles/blenda-icons.css">
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 	<header class="nd-header">
 		<div class="nd-header__logo">
-			<a href="/"><img src="images/png/logo.png"></a>
+			<a href="/">
+				<img class="nd-header__logo-img" src="images/png/logo.png">
+				<img class="nd-header__logo-img-small" src="images/png/logo-small.png">
+			</a>
 		</div>
 		<ul class="nd-header__menu">
 			<li class="nd-header__menu__item"><a href="#about">о нас</a></li>
@@ -36,6 +41,7 @@
 				</button>
 			</div>
 		</div>
+		<a href="javascript:;" class="nd-header__menu-icon nd-menu-form__trigger">&#9776;</a>
 	</header>
 	
 	<section class="nd-hero nd-full-width-block" id="about">
@@ -77,8 +83,6 @@
 				<div class="nd-flex-grid__item__title">Домашние <br> задания</div>
 				<div class="nd-flex-grid__item__description">После каждого занятия каждый ученик фотошколы будет получать творческое домашее задание</div>
 			</div>
-		</div>		
-		<div class="nd-flex-grid">
 			<div class="nd-flex-grid__item">
 				<div class="nd-flex-grid__item__icon"><i class="icon-sertificate"></i></div>
 				<div class="nd-flex-grid__item__title">Персональный <br> сертификат</div>
@@ -272,6 +276,10 @@
 		</div>
 	</section>
 	
+	<div class="nd-block-header nd-video__block-header">
+		<h4 class="nd-block-header__header">Как проходят наши курсы</h4>
+		<p class="nd-block-header__subheader">Посмотрите видео с наших занятий</p>
+	</div>
 	<section class="nd-video nd-full-width-block">
 		<div class="nd-video__icon"></div>
 		<div class="nd-video__subtitle">Посмотрите видео с наших занятий</div>
@@ -297,6 +305,7 @@
 				</div>
 				<div class="nd-reviews__quote"></div>
 				<div class="nd-reviews__review-body">
+					<div class="nd-reviews__review-body__quote"></div>
 					<div class="nd-reviews__review-body__title">
 						«Я очень довольна результатом курсов. <br>
 						Получила от них больше, чем ожидала»
@@ -325,6 +334,7 @@
 				</div>
 				<div class="nd-reviews__quote"></div>
 				<div class="nd-reviews__review-body">
+					<div class="nd-reviews__review-body__quote"></div>
 					<div class="nd-reviews__review-body__title">
 						«Сказать, что я доволен обучением в фотошколе – это ничего не сказать!» 
 					</div>
@@ -350,6 +360,7 @@
 				</div>
 				<div class="nd-reviews__quote"></div>
 				<div class="nd-reviews__review-body">
+					<div class="nd-reviews__review-body__quote"></div>
 					<div class="nd-reviews__review-body__title">
 						«Я уже училась в одной фотошколе и могу сравнить!» 
 					</div>
@@ -376,6 +387,7 @@
 				</div>
 				<div class="nd-reviews__quote"></div>
 				<div class="nd-reviews__review-body">
+					<div class="nd-reviews__review-body__quote"></div>
 					<div class="nd-reviews__review-body__title">
 						«Хотелось еще и еще приходить на занятия в фотошколу, т.к. действительно сильная и позитивная энергетика царит в ней!»
 					</div>
@@ -403,6 +415,7 @@
 				</div>
 				<div class="nd-reviews__quote"></div>
 				<div class="nd-reviews__review-body">
+					<div class="nd-reviews__review-body__quote"></div>
 					<div class="nd-reviews__review-body__title">
 						«Фотошкола открыла новый взгляд на мир через видоискатель!»
 					</div>
@@ -538,6 +551,11 @@
 				Фотошкола Павла Бабарыкина<br>
 				Все права защищены © 2016
 			</div>
+			<div class="nd-footer__social">
+				<a href="https://vk.com/blenda_by" class="nd-footer__social-icon" target="_blank"><i class="icon-instagram"></i></a>
+				<a href="https://www.instagram.com/blenda_minsk/" class="nd-footer__social-icon" target="_blank"><i class="icon-vk"></i></a>
+				<a href="https://www.facebook.com/blenda.by/" class="nd-footer__social-icon" target="_blank"><i class="icon-facebook"></i></a>
+			</div>
 			<div class="nd-footer__studio">
 				<a href="http://spaced.by" target="_blank"><img src="images/png/placed-logo.png" alt="SPACED"></a>
 			</div>
@@ -622,7 +640,7 @@
 		<div class="nd-form-popup">
 			<a class="close-modal-button" href="javascript:;" data-izimodal-close="">Закрыть</a>
 			<div class="nd-block-header nd-block-header--no-padding">
-				<h4 class="nd-block-header__header">Заказать звонок</h4>
+				<h4 class="nd-block-header__header">Заказать обратный звонок</h4>
 				<p class="nd-block-header__subheader">
 					Заполните, пожалуйста, форму <br>
 					и мы свяжемся с вами в ближайшее время
@@ -654,6 +672,31 @@
 		</div>
 	</div>
 
+	<div id="nd-success-form">
+		<div class="nd-success-popup">
+			<a class="close-modal-button" href="javascript:;" data-izimodal-close="">Закрыть</a>
+			<svg class="nd-success-popup__success-icon" viewBox="0 0 100 100">
+				<circle cx="50" cy="50" r="45"/>
+				<polyline points="27,50 45,65 73,35"/>
+			</svg>
+			<div class="nd-block-header nd-block-header--no-padding">
+				<p class="nd-block-header__header">
+					Ваша заявка принята
+				</p>
+			</div>
+			<p class=nd-success-popup__text>Наш менеджер свяжется с вами в ближайшее время.</p>
+			<p class=nd-success-popup__text>
+				Также для вас есть подарок – <br>
+				иллюстрированное пособие для фотографа.
+			</p>
+			<button type="button" class="nd-button-cta__btn nd-success-popup__btn">
+				<span class="nd-button-cta__btn__corners--left"></span>
+				<span class="nd-button-cta__btn__text">Получить пособие</span>
+				<span class="nd-button-cta__btn__corners--right"></span>
+			</button>
+		</div>
+	</div>
+
 
 	<div id="nd-terms">
 		<div class="nd-terms">
@@ -672,6 +715,21 @@
 			<p class="nd-terms__text">Если Вы предоставили свои Персональные данные и хотите, чтобы такая информация была изменена или исключена из наших баз данных, или если Вы хотите узнать какими Персональными данными о Вас мы располагаем, Вы можете направить нам запрос по адресу. Мы приложим все усилия для того, чтобы ответить на Ваш запрос.</p>
 			<h4 class="nd-terms__subheader">Изменения на Сайте</h4>
 			<p class="nd-terms__text">Мы оставляем за собой право в любое время и без уведомления закрыть или изменить любую услугу на Сайте.</p>
+		</div>
+	</div>
+
+
+	<div id="nd-menu-form">
+		<div class="nd-menu-form">
+			<a class="close-modal-button" href="javascript:;" data-izimodal-close="">Закрыть</a>
+			<ul class="nd-menu-form__list">
+				<li class="nd-menu-form__list__item"><a href="#about">о нас</a></li>
+				<li class="nd-menu-form__list__item"><a href="#program">программа курса</a></li>
+				<li class="nd-menu-form__list__item"><a href="#price">стоимость</a></li>
+				<li class="nd-menu-form__list__item"><a href="#advantages">особенности</a></li>
+				<li class="nd-menu-form__list__item"><a href="#reviews">отзывы</a></li>
+				<li class="nd-menu-form__list__item"><a href="#contact">контакты</a></li>
+			</ul>
 		</div>
 	</div>
 

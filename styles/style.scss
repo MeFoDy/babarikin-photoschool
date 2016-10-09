@@ -41,9 +41,29 @@ body {
         display: inline-block;
         margin-left: 50px;
 
-        img {
+        @include respond-to(tablets-phones) {
+            margin-left: 10px;
+        }
+
+
+        &-img {
             vertical-align: middle;
             width: 200px;
+
+            @include respond-to(phones) {
+                display: none;
+            }
+
+
+            &-small {
+                display: none;
+                vertical-align: middle;
+                width: 55px;
+
+                @include respond-to(phones) {
+                    display: inline-block;
+                }
+            }
         }
     }
 
@@ -51,6 +71,25 @@ body {
         display: inline-block;
         margin: 0;
         vertical-align: middle;
+
+        @include respond-to(phones) {
+            display: none;
+        }
+
+
+        &-icon {
+            color: $color--light;
+            display: none;
+            font-size: 2.4rem;
+            margin: 0;
+            margin-right: 10px;
+            text-decoration: none;
+            vertical-align: middle;
+
+            @include respond-to(phones) {
+                display: inline-block;
+            }
+        }
 
         &__item {
             display: inline-block;
@@ -90,6 +129,11 @@ body {
         min-width: 205px;
         position: relative;
         vertical-align: middle;
+
+        @include respond-to(tablets-phones) {
+            margin-right: 10px;
+        }
+
 
         &:hover {
             .nd-header__phones__dropdown {
@@ -162,6 +206,11 @@ body {
     min-height: 670px;
     padding-top: #{$size--header-size + 90};
 
+    @include respond-to(phones) {
+        min-height: auto;
+    }
+
+
     &__subheader {
         color: $color--light;
         font-family: 'LatoLight';
@@ -169,6 +218,10 @@ body {
         line-height: 1.5;
         text-align: center;
         text-transform: uppercase;
+
+        @include respond-to(phones) {
+            font-size: 1.4rem;
+        }
     }
 
     &__header {
@@ -178,18 +231,31 @@ body {
             line-height: 1.5;
             text-align: center;
             text-transform: uppercase;
+
+            @include respond-to(phones) {
+                font-size: 2.2rem;
+            }
         }
     }
 
     &__cta {
         margin: 70px auto;
         text-align: center;
+
+        @include respond-to(phones) {
+            margin: 40px auto;
+        }
     }
 
     &__mouse-icon {
         color: $color--light;
         font-size: 3rem;
+        padding-bottom: 20px;
         text-align: center;
+
+        @include respond-to(phones) {
+            padding-bottom: 40px;
+        }
     }
 }
 
@@ -200,12 +266,14 @@ body {
 .nd-flex-grid {
     align-items: top;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 80px;
 
     &__item {
         display: block;
         max-width: 360px;
+        min-width: 330px;
         padding: 15px;
 
         &__icon {
@@ -306,10 +374,21 @@ body {
 .nd-flex-composite-grid {
     display: flex;
 
+    @include respond-to(tablets-phones) {
+        max-width: 100vw;
+        flex-wrap: wrap;
+    }
+
+
     &__column {
         display: flex;
         flex: 1 33%;
         flex-direction: column;
+
+        @include respond-to(tablets-phones) {
+            flex: 1 100%;
+            min-width: 100vw;
+        }
     }
 
     &__item {
@@ -322,6 +401,14 @@ body {
         overflow: hidden;
         padding: 35px;
         position: relative;
+
+        @include respond-to(tablets-phones) {
+            flex: 1 100%;
+            min-width: 100vw;
+            min-height: 250px;
+            height: auto;
+        }
+
 
         &:hover {
             .nd-services__darken-item {
@@ -343,6 +430,10 @@ body {
 
         &--2x {
             flex: 1 480px;
+
+            @include respond-to(tablets-phones) {
+                flex: 1 200%;
+            }
         }
 
         &__title {
@@ -370,10 +461,11 @@ body {
 }
 
 .nd-trust {
-    padding-bottom: 80px;
+    padding-bottom: 40px;
 
     &__list {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
 
         &__item {
@@ -381,6 +473,7 @@ body {
             flex: 1 250px;
             max-width: 250px;
             text-align: center;
+            margin-bottom: 40px;
 
             &__circle {
                 display: block;
@@ -438,6 +531,7 @@ body {
 
     &__container {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 auto;
         max-width: 1140px;
@@ -446,10 +540,19 @@ body {
     &__discount {
         flex: 8 66%;
 
+        @include respond-to(phones) {
+            flex: 1 100%;
+        }
+
+
         &__header {
             color: $color--light;
             font-size: 4.8rem;
             text-transform: uppercase;
+
+            @include respond-to(phones) {
+                font-size: 3rem;
+            }
         }
 
         &__subheader {
@@ -457,6 +560,10 @@ body {
             color: $color--light;
             text-transform: uppercase;
             margin: 30px 0;
+
+            @include respond-to(phones) {
+                font-size: 2.4rem;
+            }
         }
 
         &__is {
@@ -502,11 +609,22 @@ body {
 
     &__form {
         flex: 4 33%;
+
+        @include respond-to(phones) {
+            flex: 1 100%;
+        }
     }
 }
 
 .nd-slider {
     padding-bottom: 80px;
+
+    @include respond-to(phones) {
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
 
     &__main-photo {
         max-width: 1140px;
@@ -515,14 +633,23 @@ body {
         img {
             width: 100%;
         }
+
+        @include respond-to(phones) {
+            display: none !important;
+        }
     }
 
     &__panel {
         display: flex;
+        flex-wrap: wrap;
         max-width: 1140px;
         margin: 20px auto;
         justify-content: space-between;
         align-items: center;
+
+        @include respond-to(phones) {
+            align-items: stretch;
+        }
     }
 
     &__prev, &__next {
@@ -532,6 +659,10 @@ body {
 
         &:hover {
             color: $color--primary;
+        }
+
+        @include respond-to(phones) {
+            display: none;
         }
     }
 
@@ -543,6 +674,18 @@ body {
         position: relative;
         text-align: center;
         width: 140px;
+
+        @include respond-to(tablets) {
+            width: 100px;
+            height: 80px;
+        }
+
+
+        @include respond-to(phones) {
+            height: 40vw;
+            width: 50vw;
+        }
+
 
         &:hover::after, &.active::after {
             background-color: $color--black-transparent;
@@ -559,6 +702,10 @@ body {
             position: absolute;
             top: 0;
             width: 100%;
+
+            @include respond-to(phones) {
+                background-color: $color--black-transparent;
+            }
         }
 
         img {
@@ -580,20 +727,43 @@ body {
     color: $color--light;
     text-align: center;
 
+    @include respond-to(phones) {
+        padding: 20vw 0;
+    }
+
+
+    &__block-header {
+        display: none;
+
+        @include respond-to(phones) {
+            display: block;
+        }
+    }
+
     &__embedded {
         background-color: $color--dark-bg;
         text-align: center;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     &__title {
         font-size: 4.8rem;
         text-transform: uppercase;
+
+        @include respond-to(phones) {
+            display: none;
+        }
     }
 
     &__subtitle {
         font-size: 1.8rem;
         text-transform: uppercase;
         margin: 25px auto;
+
+        @include respond-to(phones) {
+            display: none;
+        }
     }
 
     &__icon {
@@ -625,6 +795,12 @@ body {
 
     padding-bottom: 80px;
 
+    @include respond-to(phones) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+
     &__container {
         align-items: top;
         display: flex;
@@ -633,11 +809,17 @@ body {
         max-width: 1140px;
     }
 
-    &__prev, &__next {
+    &__prev,
+    &__next {
         align-self: center;
         color: $color--light-dark;
         cursor: pointer;
         font-size: 4rem;
+
+        @include respond-to(phones) {
+            display: none;
+        }
+
 
         &:hover {
             color: $color--primary;
@@ -649,42 +831,102 @@ body {
         justify-content: space-between;
         min-width: $size--review-width;
 
+        @include respond-to(tablets) {
+            min-width: #{$size--review-body-width + $size--avatar-width / 2 + $size--quote-width - 100px};
+        }
+
+
+        @include respond-to(phones) {
+            flex-wrap: wrap;
+            min-width: 100vw;
+            max-width: 100vw;
+        }
+
+
         &.active {
             display: flex;
         }
     }
 
     &__avatar {
-        border-radius: 50%;
-        display: block;
-        height: $size--avatar-width;
-        overflow: hidden;
-        width: $size--avatar-width;
+        margin-bottom: 30px;
+        text-align: center;
+
+        @include respond-to(phones) {
+            flex: 1 100%;
+        }
+
 
         img {
-            height: 100%;
+            border-radius: 50%;
+            display: inline-block;
+            height: $size--avatar-width;
+            overflow: hidden;
+            width: $size--avatar-width;
+
+            @include respond-to(tablets) {
+                width: $size--avatar-width / 2;
+                height: $size--avatar-width / 2;
+            }
         }
     }
 
     &__quote {
+        flex: 1 $size--quote-width;
         background: url("../images/png/quotes.png") no-repeat top center;
         display: block;
         height: $size--quote-width;
         width: $size--quote-width;
+
+        @include respond-to(phones) {
+            display: none;
+        }
     }
 
     &__review-body {
         max-width: 540px;
 
+        @include respond-to(phones) {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+
+        &__quote {
+            flex: 1 #{$size--quote-width / 2};
+            background: url("../images/png/quotes.png") no-repeat top center;
+            background-size: #{$size--quote-width / 2};
+            display: none;
+            height: #{$size--quote-width / 2};
+            vertical-align: top;
+            width: #{$size--quote-width / 2};
+            margin-right: 20px;
+
+            @include respond-to(phones) {
+                display: inline-block;
+            }
+        }
+
         &__title {
             font-size: 2.8rem;
             margin-bottom: 15px;
+
+            @include respond-to(phones) {
+                display: inline-block;
+                font-size: 2rem;
+                line-height: 1.4;
+                width: calc(100% - #{$size--quote-width / 2} - 40px);
+            }
         }
 
         &__text {
             font-size: 1.8rem;
             font-style: italic;
             line-height: 1.4;
+
+            @include respond-to(phones) {
+                width: 90vw;
+            }
         }
 
         &__link {
@@ -699,6 +941,11 @@ body {
             display: inline-block;
             float: right;
             position: relative;
+
+            @include respond-to(phones) {
+                padding-top: 20px;
+            }
+
 
             &::before {
                 background-color: $color--primary;
@@ -717,6 +964,13 @@ body {
         clear: both;
         display: block;
 
+        @include respond-to(phones) {
+            margin-top: 0 auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+
         &__item {
             background-color: $color--light-dark;
             cursor: pointer;
@@ -734,10 +988,12 @@ body {
 .nd-gift {
     background: url("../images/jpg/gift.jpg") no-repeat center center;
     background-size: cover;
-    padding: 80px 0;
+    padding-bottom: 80px;
+    padding-top: 80px;
 
     &__container {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 auto;
         max-width: 1140px;
@@ -746,9 +1002,18 @@ body {
     &__discount {
         flex: 8 66%;
 
+        @include respond-to(phones) {
+            flex: 1 100%;
+        }
+
+
         &__header {
-            font-size: 3.8rem;
             color: $color--light;
+            font-size: 3.8rem;
+
+            @include respond-to(phones) {
+                font-size: 3rem;
+            }
         }
 
         &__description {
@@ -760,10 +1025,16 @@ body {
 
     &__form {
         flex: 4 33%;
+
+        @include respond-to(phones) {
+            flex: 1 100%;
+        }
     }
 }
 
 .nd-contact {
+    padding: 0;
+
     &__google-map {
         height: 520px;
         width: 100%;
@@ -772,12 +1043,19 @@ body {
     &__list {
         align-items: center;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
         margin: 0 auto 50px;
         max-width: 1140px;
 
         &__item {
             text-align: center;
+
+            @include respond-to(phones) {
+                flex: 1 100%;
+                margin-bottom: 20px;
+            }
+
 
             &__icon {
                 color: $color--primary;
@@ -802,31 +1080,100 @@ body {
     &__form {
         display: block;
         margin: 0 auto;
-        width: 430px;
+        max-width: 430px;
+        width: 100%;
     }
 }
 
 .nd-footer {
     background-color: $color--footer-bg;
+    padding-left: 10px;
+    padding-right: 10px;
 
     &__container {
         align-items: center;
         color: $color--light;
         display: flex;
+        flex-wrap: wrap;
         font-size: 1.6rem;
-        height: 115px;
         justify-content: space-between;
         margin: 0 auto;
         max-width: 1140px;
+        min-height: 115px;
+        padding: 15px 0;
+    }
+
+    &__rights {
+        text-align: left;
+        width: 250px;
+
+        @include respond-to(phones) {
+            flex: 1 100%;
+            text-align: center;
+        }
+    }
+
+    &__social {
+        text-align: center;
+        width: 250px;
+
+        @include respond-to(phones) {
+            flex: 1 100%;
+            margin: 15px auto;
+            padding: 15px 0;
+            border-top: 1px dotted $color--dark;
+            border-bottom: 1px dotted $color--dark;
+        }
+
+
+        &-icon {
+            @include ease-transition;
+
+            font-size: 2rem;
+            margin-right: 30px;
+            color: $color--light;
+
+            &:hover {
+                color: $color--primary;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__studio {
+        text-align: right;
+        width: 250px;
+
+        @include respond-to(phones) {
+            flex: 1 100%;
+            text-align: center;
+        }
     }
 }
 
-#nd-terms {
+#nd-terms,
+#nd-free-lesson-form,
+#nd-courses-form,
+#nd-call-form,
+#nd-success-form,
+#nd-menu-form {
     display: none;
+}
+
+#nd-menu-form {
+    background: none;
 }
 
 .nd-terms {
     padding: 70px 80px;
+
+    @include respond-to(phones) {
+        padding: 70px 20px;
+    }
+
 
     &__header {
         color: $color--primary;
@@ -840,5 +1187,62 @@ body {
     &__text {
         line-height: 1.4;
         margin: 0;
+    }
+}
+
+.nd-menu-form {
+    align-items: center;
+    background-color: $color--black-little-transparent;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+
+    &__list {
+        list-style: none;
+        margin: 0;
+
+        &__item {
+            padding-bottom: 2rem;
+
+            a {
+                color: $color--light;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 2.1rem;
+            }
+        }
+    }
+}
+
+.nd-success-popup {
+    padding: 50px 80px;
+    text-align: center;
+
+    @include respond-to(phones) {
+        padding: 70px 20px;
+    }
+
+
+    &__text {
+        font-size: 2.1rem;
+        margin-bottom: 40px;
+    }
+
+    &__success-icon {
+        height: 170px;
+        margin-bottom: 20px;
+        width: 170px;
+
+        circle,
+        polyline {
+            fill: none;
+            stroke: $color--primary;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 3;
+        }
     }
 }

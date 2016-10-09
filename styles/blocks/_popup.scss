@@ -1,12 +1,19 @@
 @import "../common/colors";
+@import "../common/mixins";
 
 .nd-form-popup {
     padding: 70px 80px;
 
+    @include respond-to(phones) {
+        padding: 70px 20px;
+    }
+
+
     &__form {
         display: block;
         margin: 0 auto;
-        width: 430px;
+        max-width: 430px;
+        width: 100%;
     }
 }
 

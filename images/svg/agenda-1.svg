@@ -1,36 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   viewBox="0 0 64 64"
-   height="64"
-   width="64"
-   xml:space="preserve"
-   id="svg2"
-   version="1.1"><metadata
-     id="metadata8"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
-     id="defs6" /><g
-     transform="matrix(1.3333333,0,0,-1.3333333,0,64)"
-     id="g10"><g
-       transform="scale(0.1)"
-       id="g12"><path
-         id="path14"
-         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         d="M 456.129,480 H 423.91 C 410.699,480 400,469.301 400,456.129 V 77.8906 L 431.988,21.8789 V 8.01172 C 431.988,3.58984 435.59,0 440,0 c 4.41,0 8.012,3.58984 8.012,8.01172 V 21.8789 L 480,77.8906 V 456.129 C 480,469.301 469.301,480 456.129,480 Z M 416.02,408.012 h 47.96 V 391.988 H 416.02 Z M 440,40.1211 421.801,71.9883 h 36.398 z m 23.98,47.8906 H 416.02 V 376.02 h 47.96 z M 416.02,423.98 v 32.149 c 0,4.34 3.511,7.851 7.851,7.851 h 32.219 c 4.379,0 7.89,-3.511 7.89,-7.851 V 423.98 Z" /><path
-         id="path16"
-         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         d="M 0,480 V 0 H 368.012 V 480 Z M 16.0195,16.0195 V 463.98 h 47.961 V 16.0195 Z M 351.988,463.98 V 16.0195 H 80 V 463.98 Z" /><path
-         id="path18"
-         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         d="M 311.988,288.012 V 400 H 120 V 288.012 Z M 136.02,383.98 h 160 v -80 h -160 z" /><path
-         id="path20"
-         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         d="m 160,351.988 h 111.988 v 16.0234 H 160 Z" /><path
-         id="path22"
-         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         d="m 160,320 h 111.988 v 16.0195 H 160 Z" /></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px"
+	 viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<g id="g10" transform="matrix(1.3333333,0,0,-1.3333333,0,64)">
+	<g id="g12" transform="scale(0.1)">
+		<path id="path14" d="M456.13,480h-32.219c-13.213,0-23.906-10.701-23.906-23.87V77.885l31.985-56.008V8.012
+			c0-4.424,3.596-8.013,8.005-8.013c4.417,0,8.013,3.589,8.013,8.013v13.865L480,77.885V456.13C480,469.299,469.299,480,456.13,480z
+			 M416.016,408.01h47.959v-16.022h-47.959V408.01z M439.995,40.122L421.802,71.99h36.401L439.995,40.122z M463.975,88.008h-47.959
+			v288.01h47.959V88.008z M416.016,423.98v32.15c0,4.34,3.516,7.852,7.852,7.852h32.227c4.38,0,7.881-3.512,7.881-7.852v-32.15
+			H416.016z"/>
+		<path id="path16" d="M0,480V0h368.013v480H0z M16.018,16.018v447.964h47.963V16.018H16.018z M351.987,463.982V16.018H79.999
+			v447.964H351.987z"/>
+		<path id="path18" d="M311.99,288.01v111.991H120V288.01H311.99z M136.022,383.979h159.994V303.98H136.022V383.979z"/>
+		<path id="path20" d="M160.001,351.987h111.991v16.025H160.001V351.987z"/>
+		<path id="path22" d="M160.001,319.999h111.991v16.022H160.001V319.999z"/>
+	</g>
+</g>
+</svg>
