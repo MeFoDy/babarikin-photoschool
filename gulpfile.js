@@ -7,6 +7,7 @@ var gutil = require('gulp-util'),
     uglify = require('gulp-uglify'),
     cssnano = require('gulp-cssnano'),
     del = require('del'),
+    htmlmin = require('gulp-htmlmin'),
     runSequence = require('run-sequence');
 
 var path = {};
@@ -15,7 +16,14 @@ gulp.task('useref', function() {
     return gulp.src('app/*.html')
         .pipe(useref())
         .pipe(gulpIf('*.js', uglify()))
-        .pipe(gulpIf('*.css', cssnano()))
+        .pipe(gulpIf('*.css', cssnano({
+            autoprefixer: {
+                cascade: false
+            }
+        })))
+        .pipe(gulpIf('*.html', htmlmin({
+            collapseWhitespace: true
+        })))
         .pipe(gulp.dest('dist'));
 });
 
