@@ -1047,11 +1047,12 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        margin: 0 auto 50px;
+        margin: 0 auto 20px;
         max-width: 1140px;
 
         &__item {
             text-align: center;
+            margin-bottom: 30px;
 
             @include respond-to(phones) {
                 flex: 1 100%;

@@ -14,7 +14,6 @@
     font-size: 3rem;
     font-weight: bold;
     height: $scollup-button-height;
-    padding: 13px;
     position: fixed;
     right: 30px;
     text-align: center;
@@ -28,7 +27,7 @@
     }
 
     [class*='icon-'] {
-        $scollup-button-icon-height: 30px;
+        $scollup-button-icon-height: 60px;
 
         display: inline-block;
         height: $scollup-button-icon-height;
