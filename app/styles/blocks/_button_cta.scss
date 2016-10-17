@@ -10,11 +10,17 @@
         background-color: $color--button-cta-bg;
         border: 0;
         color: $color--button-cta-color;
+        cursor: pointer;
         display: inline-block;
         outline: none;
         position: relative;
 
-        &:hover {
+        &:disabled {
+            background-color: lighten($color--button-cta-bg, 10%);
+            cursor: wait;
+        }
+
+        &:enabled:hover {
             background-color: darken($color--button-cta-bg, 10%);
 
             .nd-button-cta__btn__corners {
@@ -56,7 +62,6 @@
         }
 
         &__text {
-            cursor: pointer;
             display: inline-block;
             font-size: 1.6rem;
             padding: 20px 25px;

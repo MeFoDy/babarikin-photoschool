@@ -32,6 +32,16 @@ gulp.task('copy:fonts', function() {
         .pipe(gulp.dest('dist/fonts'));
 });
 
+gulp.task('copy:js', function() {
+    return gulp.src('app/scripts/analytics.js')
+        .pipe(gulp.dest('dist/scripts/'));
+});
+
+gulp.task('copy:backend', function() {
+    return gulp.src('app/backend/**/*')
+        .pipe(gulp.dest('dist/backend'));
+});
+
 gulp.task('copy:images', function() {
     return gulp.src('app/images/+(png|jpg|svg)/**/*')
         .pipe(gulp.dest('dist/images'));
@@ -42,7 +52,7 @@ gulp.task('clean:dist', function() {
 });
 
 gulp.task('build', function() {
-    runSequence('clean:dist', ['useref', 'copy:fonts', 'copy:images'], function() {
+    runSequence('clean:dist', ['useref', 'copy:fonts', 'copy:images', 'copy:js', 'copy:backend'], function() {
         gutil.log(gutil.colors.green('✔ ') + 'Build has been completed');
     });
 });

@@ -14,7 +14,7 @@ $(function() {
         transitionIn: 'fadeInDown',
         transitionOut: 'fadeOutDown'
     });
-    $("#nd-free-lesson-form, #nd-courses-form, #nd-call-form, #nd-success-form, #nd-menu-form").iziModal({
+    $("#nd-free-lesson-form, #nd-courses-form, #nd-call-form, #nd-success-form, #nd-menu-form, #nd-gift-form").iziModal({
         width: '750px',
         padding: 0,
         radius: 0,
@@ -26,7 +26,11 @@ $(function() {
         overlayColor: 'rgba(0, 0, 0, 0.5)',
         timeout: false,
         transitionIn: 'fadeInDown',
-        transitionOut: 'fadeOutDown'
+        transitionOut: 'fadeOutDown',
+        onClosing: function() {
+            gaTrack('/');
+            yaHit('/');
+        }
     });
     var iziForms = [{
         trigger: '.nd-terms__trigger',
@@ -41,9 +45,6 @@ $(function() {
         trigger: '.nd-call-form__trigger',
         target: '#nd-call-form'
     }, {
-        trigger: '.TODO',
-        target: '#nd-success-form'
-    }, {
         trigger: '.nd-menu-form__trigger',
         target: '#nd-menu-form'
     }];
@@ -53,6 +54,14 @@ $(function() {
             $(iziForm.target).iziModal('open');
         });
     });
+    $(document).on('click', '.nd-success-popup__btn', function(event) {
+        event.preventDefault();
+        $('#nd-success-form').iziModal('close');
+        $('#nd-gift-form').iziModal('open');
+    });
+
+    // Add phone mask
+    $("input[id*=phone]").mask("+375 (99) 999-99-99");
 
     // Youtube video block
     $(document).on('click', '.nd-video__icon', function(event) {
@@ -71,16 +80,60 @@ $(function() {
         $(window).trigger('resize');
     });
 
+    $(document).on('click', '.gift__btn', function(event) {
+        var $container = $(this).parent('.nd-contact-form');
+        var email = $container.find('input[id$="__email"]').val();
+        var name = $container.find('input[id$="__name"]').val();
+        if (name) {
+            $('input[id$="__name"]').val(name);
+        }
+        if (email) {
+            $('#nd-gift-form').iziModal('close');
+            $.post("/backend/subscribe.php", {
+                name: name,
+                email: email
+            }).done(function(data) {
+                // do nothing
+            });
+        }
+    });
+
     // Submit button handler
     $(document).on('click', '.nd-contact-form__btn', function(event) {
+        if ($(this).hasClass('gift__btn')) {
+            return;
+        }
         var $container = $(this).parent('.nd-contact-form');
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
+        var theme = $(this).attr('data-theme');
         if (phone) {
             $('input[id$="__phone"]').val(phone);
         }
         if (name) {
             $('input[id$="__name"]').val(name);
+        }
+        if (phone) {
+            $('.nd-contact-form__btn').attr('disabled', 'disabled');
+            submitForm(theme || 'Заявка на обратный звонок', name, phone);
+        }
+
+        function submitForm(theme, name, phone) {
+            $.post("/backend/submit.php", {
+                theme: theme,
+                name: name,
+                phone: phone
+            }).done(function(data) {
+                if (data == "OK") {
+                    iziForms.forEach(function(iziForm) {
+                        $(iziForm.target).iziModal('close');
+                    });
+                    $('#nd-success-form').iziModal('open');
+                    gaTrack('/success.html');
+                    yaHit('/success.html');
+                }
+                $('.nd-contact-form__btn').removeAttr('disabled');
+            });
         }
     });
 
@@ -135,7 +188,7 @@ $(function() {
         }
         $prev.trigger('click');
     });
-    $(document).on('click', '.nd-slider__next', function(event) {
+    $(document).on('click', '.nd-slider__next, .nd-slider__main-photo', function(event) {
         var $next = $('.nd-slider__mini.active').next();
         if (!$next.hasClass('nd-slider__mini')) {
             $next = $('.nd-slider__prev').next();
