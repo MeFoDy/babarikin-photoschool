@@ -18,7 +18,9 @@ gulp.task('useref', function() {
         .pipe(gulpIf('*.js', uglify()))
         .pipe(gulpIf('*.css', cssnano({
             autoprefixer: {
-                cascade: false
+                cascade: false,
+                browsers: ['> 1%', 'last 5 versions'],
+                add: true
             }
         })))
         .pipe(gulpIf('*.html', htmlmin({
