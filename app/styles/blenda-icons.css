@@ -57,7 +57,6 @@
 
 
  
-.icon-vk:before { content: '\e809'; } /* '' */
 .icon-agenda:before { content: '\e813'; } /* '' */
 .icon-arrow-left:before { content: '\e814'; } /* '' */
 .icon-arrow-right:before { content: '\e815'; } /* '' */
@@ -74,4 +73,6 @@
 .icon-quotes:before { content: '\e820'; } /* '' */
 .icon-sertificate:before { content: '\e821'; } /* '' */
 .icon-facebook:before { content: '\f09a'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
 .icon-instagram:before { content: '\f16d'; } /* '' */
+.icon-vk:before { content: '\f189'; } /* '' */
