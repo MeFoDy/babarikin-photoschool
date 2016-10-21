@@ -235,8 +235,8 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('google-map'), {
         center: {
-            lat: 53.8892491,
-            lng: 27.5756478
+            lat: 53.890153,
+            lng: 27.569350
         },
         zoom: 17,
         scrollwheel: false,
@@ -252,8 +252,8 @@ function initMap() {
     });
     var marker = new google.maps.Marker({
         position: {
-            lat: 53.8892491,
-            lng: 27.5756478
+            lat: 53.890153,
+            lng: 27.569350
         },
         map: map,
         title: 'Фотошкола Павла Бабарыкина',
