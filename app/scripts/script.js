@@ -1,3 +1,5 @@
+var hasBeenShowed = false;
+
 $(function() {
     // Init popups
     $("#nd-terms").iziModal({
@@ -14,7 +16,7 @@ $(function() {
         transitionIn: 'fadeInDown',
         transitionOut: 'fadeOutDown'
     });
-    $("#nd-free-lesson-form, #nd-courses-form, #nd-call-form, #nd-success-form, #nd-menu-form, #nd-gift-form").iziModal({
+    $("#nd-free-lesson-form, #nd-free-gift-form, #nd-courses-form, #nd-call-form, #nd-success-form, #nd-menu-form, #nd-gift-form").iziModal({
         width: '750px',
         padding: 0,
         radius: 0,
@@ -86,6 +88,7 @@ $(function() {
         var name = $container.find('input[id$="__name"]').val();
         if (name) {
             $('input[id$="__name"]').val(name);
+            storeToLocalstorage(name);
         }
         if (email) {
             $('#nd-gift-form').iziModal('close');
@@ -95,8 +98,22 @@ $(function() {
             }).done(function(data) {
                 // do nothing
             });
+            storeToLocalstorage(null, null, email);
         }
     });
+
+    // Last chance
+    setTimeout(function() {
+        $(document).mouseleave(function(e) {
+            if (e.offsetY <= 0 && !hasBeenShowed) {
+                $('#nd-free-gift-form').iziModal('open');
+                hasBeenShowed = true;
+                gaTrack('/beforeLeave.html');
+                yaHit('/beforeLeave.html');
+                fbq('track', 'beforeLeave');
+            }
+        });
+    }, 5000);
 
     // Submit button handler
     $(document).on('click', '.nd-contact-form__btn', function(event) {
@@ -107,13 +124,13 @@ $(function() {
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
         var theme = $(this).attr('data-theme');
-        if (phone) {
-            $('input[id$="__phone"]').val(phone);
-        }
         if (name) {
             $('input[id$="__name"]').val(name);
+            storeToLocalstorage(name);
         }
         if (phone) {
+            $('input[id$="__phone"]').val(phone);
+            storeToLocalstorage(null, phone);
             $('.nd-contact-form__btn').attr('disabled', 'disabled');
             submitForm(theme || 'Заявка на обратный звонок', name, phone);
         }
@@ -131,6 +148,10 @@ $(function() {
                     $('#nd-success-form').iziModal('open');
                     gaTrack('/success.html');
                     yaHit('/success.html');
+                    fbq('track', 'success', {
+                        name: name,
+                        phone: phone
+                    });
                 }
                 $('.nd-contact-form__btn').removeAttr('disabled');
             });
@@ -227,16 +248,55 @@ $(function() {
             $next.addClass('active').fadeTo(300, 1);
         });
     });
+
+    $(".current-year").text(new Date().getFullYear());
+
+    loadFromLocalstorage();
 });
 
+function storeToLocalstorage(name, phone, email) {
+    if (supports_html5_storage()) {
+        if (name) {
+            localStorage.setItem('client_name', name);
+        }
+        if (phone) {
+            localStorage.setItem('client_phone', phone);
+        }
+        if (email) {
+            localStorage.setItem('client_email', email);
+        }
+    }
+}
+
+function loadFromLocalstorage() {
+    if (supports_html5_storage()) {
+        if (localStorage['client_name']) {
+            $('input[id$="__name"]').val(localStorage['client_name']);
+        }
+        if (localStorage['client_phone']) {
+            $('input[id$="__phone"]').val(localStorage['client_phone']);
+        }
+        if (localStorage['client_email']) {
+            $('input[id$="__email"]').val(localStorage['client_email']);
+        }
+    }
+}
+
+function supports_html5_storage() {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
+}
 
 var map;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('google-map'), {
         center: {
-            lat: 53.890153,
-            lng: 27.569350
+            lat: 53.903467,
+            lng: 27.563767
         },
         zoom: 17,
         scrollwheel: false,
@@ -252,8 +312,8 @@ function initMap() {
     });
     var marker = new google.maps.Marker({
         position: {
-            lat: 53.890153,
-            lng: 27.569350
+            lat: 53.903467,
+            lng: 27.563767
         },
         map: map,
         title: 'Фотошкола Павла Бабарыкина',
@@ -264,8 +324,7 @@ function initMap() {
         '</div>' +
         '<h1 id="firstHeading" class="firstHeading">Фотошкола Павла Бабарыкина</h1>' +
         '<div id="bodyContent">' +
-        '<p>ул. Октябрьская, 16А</p>' +
-        '<p>Фотостудия «Дива» – <a href="http://divastudio.by/shema-proezda" target="_blank">схема проезда</a></p>' +
+        '<p>пр. Независимости, 25</p>' +
         '</div>' +
         '</div>';
     var infowindow = new google.maps.InfoWindow({
