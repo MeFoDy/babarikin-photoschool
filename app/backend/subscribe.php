@@ -1,4 +1,37 @@
 <?php
+date_default_timezone_set('Etc/UTC');
+
+require 'lib/PHPMailerAutoload.php';
+
+function sendMail($name, $email) {
+  $theme = 'Подписка на бесплатную рассылку для фотографов';
+
+  $mail = new PHPMailer;
+  $mail->CharSet = "UTF-8";
+  $mail->IsHTML(true);
+
+  $mail->Subject = $theme;
+
+  $mail->Body = <<<EOT
+<p>Здравствуйте.</p>
+<p>Получен новый запрос на бесплатную рассылку для фотографов с целевой страницы: <a href="http://blenda.by">blenda.by</a></p>
+<p><strong>Данные лида:</strong></p>
+
+<p>
+<strong>Имя:</strong> {$name} <br>
+
+<strong>Электронный адрес:</strong> {$email} <br>
+
+<strong>Дополнительные значения:</strong><br>
+HTTP_REFERER: {$_SERVER["HTTP_REFERER"]}<br>
+HTTP_USER_AGENT: {$_SERVER["HTTP_USER_AGENT"]}<br>
+IP: {$_SERVER["REMOTE_ADDR"]} <br>
+</p>
+
+EOT;
+
+  $mail->send();
+}
 
 $name = isset($_POST['name']) ? $_POST['name'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
