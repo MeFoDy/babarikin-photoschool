@@ -1197,7 +1197,7 @@
   .nd-slider .swiper-button-next-thumbs.swiper-button-next {
     width: 40px;
     height: 35px;
-    margin-top: -18px;
+    margin-top: -10px;
     right: calc( (100vw - 920px) / 2 - 60px);
     background: none;
     top: 85%; }
@@ -1215,7 +1215,7 @@
   .nd-slider .swiper-button-prev-thumbs.swiper-button-prev {
     width: 40px;
     height: 35px;
-    margin-top: -18px;
+    margin-top: -10px;
     left: calc( (100vw - 920px) / 2 - 60px);
     background: none;
     top: 85%; }
