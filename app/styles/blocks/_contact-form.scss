@@ -1,8 +1,5 @@
-@import "../common/colors";
-@import "../common/mixins";
-
 .nd-contact-form {
-    &__confidence {
+    &__confidence, &__more {
         font-size: 1.6rem;
         text-align: center;
 
@@ -19,12 +16,13 @@
     }
 
     &__btn {
-        margin: 50px 10px 25px;
+        margin: 50px 10px 35px;
         width: calc(100% - 20px);
     }
 
     &-group {
         display: block;
+        margin-bottom: 10px;
         padding-top: 20px;
         position: relative;
         width: 100%;
@@ -61,6 +59,7 @@
             bottom: 20px;
             color: $color--light-dark;
             left: 10px;
+            font-size: 1.8rem;
             position: absolute;
         }
 
@@ -69,7 +68,7 @@
             border: 0;
             border-bottom: 1px solid $color--light-dark;
             color: $color--light;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
             outline: none;
             padding: 10px;
@@ -84,6 +83,7 @@
             &:valid ~ label {
                 bottom: 55px;
                 color: $color--light;
+                font-size: 1.4rem;
             }
         }
     }

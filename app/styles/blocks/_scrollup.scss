@@ -1,38 +1,22 @@
-@import "../common/colors";
-@import "../common/mixins";
-
 .nd-scrollup {
-    $scollup-button-height: 60px;
+    $scrollup-button-height: 50px;
 
     @include ease-transition;
 
-    background-color: transparent;
-    border: 1px solid $color--light-dark;
-    bottom: 50px;
-    color: $color--light-dark;
+    fill: transparent;
+    stroke: $color--light-dark;
+    stroke-width: 2px;
+    bottom: 40px;
     display: none;
     font-size: 3rem;
-    font-weight: bold;
-    height: $scollup-button-height;
+    height: $scrollup-button-height;
     position: fixed;
     right: 30px;
-    text-align: center;
-    width: $scollup-button-height;
+    width: $scrollup-button-height;
     z-index: 999;
 
     &:hover {
-        background-color: $color--light-little-transparent;
-        border-color: $color--primary;
-        color: $color--primary;
-    }
-
-    [class*='icon-'] {
-        $scollup-button-icon-height: 60px;
-
-        display: inline-block;
-        height: $scollup-button-icon-height;
-        line-height: $scollup-button-icon-height;
-        transform: rotate(90deg);
-        width: $scollup-button-icon-height;
+        fill: $color--light-little-transparent;
+        stroke: $color--primary;
     }
 }

@@ -1,22 +1,117 @@
-var hasBeenShowed = false;
+$(function () {
+    // Load user settings
+    $('.nd-price__discount__description-count').text(window.statSettings.hasPlacesCount);
+    $('.nd-price-percent').text(window.statSettings.discount);
+    $('.nd-price__discount__subheader__important').text(window.statSettings.finalDate);
+    $('.nd-price-price-new').text(window.statSettings.newPrice);
+    $('.nd-price-price-old').text(window.statSettings.oldPrice);
 
-$(function() {
-    // Init popups
-    $("#nd-terms").iziModal({
-        width: '1000px',
-        padding: 0,
-        radius: 0,
-        navigateCaption: false,
-        navigateArrows: false,
-        history: false,
-        bodyOverflow: false,
-        closeOnEscape: true,
-        overlayColor: 'rgba(0, 0, 0, 0.5)',
-        timeout: false,
-        transitionIn: 'fadeInDown',
-        transitionOut: 'fadeOutDown'
+    //Fixed navigation
+    var $menu = $(".nd-header");
+    var headerHeight = $menu.height();
+    $(window).on("scroll load resize", function () {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop > headerHeight) {
+            $menu.addClass("nd-header--fixed");
+        } else if (scrollTop <= headerHeight) {
+            $menu.removeClass("nd-header--fixed");
+        }
     });
-    $("#nd-free-lesson-form, #nd-free-gift-form, #nd-courses-form, #nd-call-form, #nd-success-form, #nd-menu-form, #nd-gift-form").iziModal({
+
+    // Smooth scroll to :target links
+    var smoothScrollTime = 700;
+    $(document).on('click', 'a[href*="#"]:not([href="#"])', function (event) {
+        event.preventDefault();
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top
+                }, smoothScrollTime);
+                return true;
+            }
+        }
+    });
+
+    // Phones toggle
+    $('.nd-header__phones__arrow').click(function () {
+        $(this).toggleClass('active');
+        $('.nd-header__phones__dropdown').toggleClass('active');
+    });
+
+    // Spincrement
+    var hasBeenIncrementShowed = false;
+    var counters = [{
+        selector: ".nd-trust-count-years",
+        to: window.statSettings.trustYears || 10
+    }, {
+        selector: ".nd-trust-count-companies",
+        to: window.statSettings.trustCompanies || 50
+    }, {
+        selector: ".nd-trust-count-percent",
+        to: window.statSettings.trustPercent || 100
+    }, {
+        selector: ".nd-trust-count-students",
+        to: window.statSettings.trustCount || 1579
+    }];
+    $(window).on("scroll load resize", function () {
+        if (hasBeenIncrementShowed) {
+            return false;
+        }
+        var countbox = $(".nd-trust");
+        var windowTop = $(window).scrollTop();
+        var elementTop = $(countbox).offset().top;
+        var windowHeight = $(window).height();
+        if (windowTop + windowHeight >= elementTop) {
+            counters.forEach(function (counter) {
+                $(counter.selector)
+                    .spincrement({
+                        thousandSeparator: "",
+                        duration: 2000,
+                        to: counter.to
+                    })
+                    .addClass('nd-trust__list__item__number--active');
+            });
+            hasBeenIncrementShowed = true;
+        }
+    });
+
+    // Swiper Portfolio initialization
+    var galleryTop = new Swiper('.gallery-top', {
+        autoplay: 4000,
+        spaceBetween: 10,
+        grabCursor: true
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 0,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        touchRatio: 0.2,
+        slideToClickedSlide: true,
+        grabCursor: true,
+        nextButton: '.swiper-button-next-thumbs',
+        prevButton: '.swiper-button-prev-thumbs'
+    });
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+
+    // Swiper Review initialization
+    var swiper = new Swiper('.swiper-reviews', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next-review',
+        prevButton: '.swiper-button-prev-review',
+        spaceBetween: 30,
+        loop: true,
+        autoHeight: true,
+        slidesPerView: 1,
+        centeredSlides: true,
+        grabCursor: true
+    });
+
+    // Init popups
+    var baseModalSettings = {
         width: '750px',
         padding: 0,
         radius: 0,
@@ -29,17 +124,23 @@ $(function() {
         timeout: false,
         transitionIn: 'fadeInDown',
         transitionOut: 'fadeOutDown',
-        onClosing: function() {
+        focusInput: false,
+        onClosing: function () {
             gaTrack('/');
             yaHit('/');
         }
-    });
+    };
+    $("#nd-terms").iziModal($.extend({}, baseModalSettings, {
+        width: '1000px',
+        openFullscreen: true
+    }));
+    $("#nd-more").iziModal($.extend({}, baseModalSettings, {
+        width: '900px'
+    }));
+    $("#nd-free-gift-form, #nd-courses-form, #nd-call-form, #nd-success-gift-form, #nd-menu-form, #nd-gift-form").iziModal(baseModalSettings);
     var iziForms = [{
         trigger: '.nd-terms__trigger',
         target: '#nd-terms'
-    }, {
-        trigger: '.nd-free-lesson-form__trigger',
-        target: '#nd-free-lesson-form'
     }, {
         trigger: '.nd-courses-form__trigger',
         target: '#nd-courses-form'
@@ -49,24 +150,109 @@ $(function() {
     }, {
         trigger: '.nd-menu-form__trigger',
         target: '#nd-menu-form'
+    }, {
+        trigger: '.nd-more__trigger',
+        target: '#nd-more'
+    }, {
+        target: "#nd-free-gift-form"
+    }, {
+        target: "#nd-success-gift-form"
+    }, {
+        target: "#nd-gift-form"
     }];
-    iziForms.forEach(function(iziForm) {
-        $(document).on('click', iziForm.trigger, function(event) {
-            event.preventDefault();
-            $(iziForm.target).iziModal('open');
-        });
+    iziForms.forEach(function (iziForm) {
+        if (iziForm.trigger) {
+            $(document).on('click', iziForm.trigger, function (event) {
+                event.preventDefault();
+                $(iziForm.target).iziModal('open');
+            });
+        }
     });
-    $(document).on('click', '.nd-success-popup__btn', function(event) {
+
+    // Auto open free gift popup after delay
+    (function openGiftFormAfterDelay(delay) {
+        setTimeout(function () {
+            var someFormIsOpened = iziForms.some(function (iziForm) {
+                var state = $(iziForm.target).iziModal('getState');
+                return state == "opened" || state == "opening";
+            });
+            if (!someFormIsOpened) {
+                $("#nd-free-gift-form").iziModal("open");
+            } else {
+                openGiftFormAfterDelay(5000);
+            }
+        }, delay);
+    })(60000);
+
+    $(document).on('click', '.nd-menu-form__list__item', function (event) {
+        $('#nd-menu-form').iziModal('close');
+    });
+
+    $(document).on('click', '.nd-success-popup__btn', function (event) {
         event.preventDefault();
-        $('#nd-success-form').iziModal('close');
+        $('#nd-success-gift-form').iziModal('close');
         $('#nd-gift-form').iziModal('open');
+    });
+
+    $(document).on('click', '.gift__btn', function (event) {
+        var $container = $(this).parent('.nd-contact-form');
+        var email = $container.find('input[id$="__email"]').val();
+        if (email) {
+            $('#nd-gift-form').iziModal('close');
+            storeToLocalstorage(null, null, email);
+            $.post("/backend/subscribe.php", {
+                email: email
+            }).done(function (data) {
+                // do nothing
+            });
+        }
     });
 
     // Add phone mask
     $("input[id*=phone]").mask("+375 (99) 999-99-99");
 
+    // Submit button handler
+    $(document).on('click', '.nd-submit', function (event) {
+        if ($(this).hasClass('gift__btn')) {
+            return;
+        }
+        var $container = $(this).parent('.nd-contact-form');
+        var phone = $container.find('input[id$="__phone"]').val();
+        var name = $container.find('input[id$="__name"]').val();
+        var theme = $(this).attr('data-theme');
+        if (name) {
+            $('input[id$="__name"]').val(name);
+        }
+        if (phone) {
+            $('input[id$="__phone"]').val(phone);
+            submitForm(theme || 'Заявка на обратный звонок', name, phone);
+        }
+
+        function submitForm(theme, name, phone) {
+            storeToLocalstorage(name, phone);
+            $.post("/backend/submit.php", {
+                theme: theme,
+                name: name,
+                phone: phone
+            }).done(function (data) {
+                if (data == "OK") {
+                    iziForms.forEach(function (iziForm) {
+                        $(iziForm.target).iziModal('close');
+                    });
+                    $('#nd-success-gift-form').iziModal('open');
+                    gaTrack('/success.html');
+                    yaHit('/success.html');
+                    fbq('track', 'success', {
+                        name: name,
+                        phone: phone
+                    });
+                }
+            });
+        }
+    });
+
     // Youtube video block
-    $(document).on('click', '.nd-video__icon', function(event) {
+    $(document).on('click', '.nd-video__icon', function (event) {
         var height = $('.nd-video').outerHeight();
         $('.nd-video')
             .css({
@@ -82,171 +268,21 @@ $(function() {
         $(window).trigger('resize');
     });
 
-    $(document).on('click', '.gift__btn', function(event) {
-        var $container = $(this).parent('.nd-contact-form');
-        var email = $container.find('input[id$="__email"]').val();
-        var name = $container.find('input[id$="__name"]').val();
-        if (name) {
-            $('input[id$="__name"]').val(name);
-            storeToLocalstorage(name);
-        }
-        if (email) {
-            $('#nd-gift-form').iziModal('close');
-            $.post("/backend/subscribe.php", {
-                name: name,
-                email: email
-            }).done(function(data) {
-                // do nothing
-            });
-            storeToLocalstorage(null, null, email);
-        }
-    });
-
-    // Last chance
-    setTimeout(function() {
-        $(document).mouseleave(function(e) {
-            if (e.offsetY <= 0 && !hasBeenShowed) {
-                $('#nd-free-gift-form').iziModal('open');
-                hasBeenShowed = true;
-                gaTrack('/beforeLeave.html');
-                yaHit('/beforeLeave.html');
-                fbq('track', 'beforeLeave');
-            }
-        });
-    }, 5000);
-
-    // Submit button handler
-    $(document).on('click', '.nd-contact-form__btn', function(event) {
-        if ($(this).hasClass('gift__btn')) {
-            return;
-        }
-        var $container = $(this).parent('.nd-contact-form');
-        var phone = $container.find('input[id$="__phone"]').val();
-        var name = $container.find('input[id$="__name"]').val();
-        var theme = $(this).attr('data-theme');
-        if (name) {
-            $('input[id$="__name"]').val(name);
-            storeToLocalstorage(name);
-        }
-        if (phone) {
-            $('input[id$="__phone"]').val(phone);
-            storeToLocalstorage(null, phone);
-            $('.nd-contact-form__btn').attr('disabled', 'disabled');
-            submitForm(theme || 'Заявка на обратный звонок', name, phone);
-        }
-
-        function submitForm(theme, name, phone) {
-            $.post("/backend/submit.php", {
-                theme: theme,
-                name: name,
-                phone: phone
-            }).done(function(data) {
-                if (data == "OK") {
-                    iziForms.forEach(function(iziForm) {
-                        $(iziForm.target).iziModal('close');
-                    });
-                    $('#nd-success-form').iziModal('open');
-                    gaTrack('/success.html');
-                    yaHit('/success.html');
-                    fbq('track', 'success', {
-                        name: name,
-                        phone: phone
-                    });
-                }
-                $('.nd-contact-form__btn').removeAttr('disabled');
-            });
-        }
-    });
-
     // Scrollup button
     var scrollupSelector = '.nd-scrollup';
     var smoothScrollTime = 700;
-    $(window).scroll(function() {
+    $(window).on("scroll load resize", function () {
         if ($(this).scrollTop() > 200) {
             $(scrollupSelector).fadeIn();
         } else {
             $(scrollupSelector).fadeOut();
         }
     });
-
-    $(scrollupSelector).click(function() {
+    $(scrollupSelector).click(function () {
         $('html, body').animate({
             scrollTop: 0
         }, smoothScrollTime);
         return false;
-    });
-
-    // Smooth scroll to :target links
-    $(document).on('click', 'a[href*="#"]:not([href="#"])', function(event) {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html, body').animate({
-                    scrollTop: target.offset().top
-                }, smoothScrollTime);
-                return true;
-            }
-        }
-    });
-
-    // Mini photo slider
-    $(document).on('click', '.nd-slider__mini', function(event) {
-        if (!$(this).hasClass('active')) {
-            var src = $(this).find('img').attr('src');
-            $(".nd-slider__main-photo").fadeTo(300, 0.2, function() {
-                $(this).find('img').attr('src', src);
-            }).fadeTo(300, 1);
-        }
-        $('.nd-slider__mini').removeClass('active');
-        $(this).addClass('active');
-        return false;
-    });
-    $(document).on('click', '.nd-slider__prev', function(event) {
-        var $prev = $('.nd-slider__mini.active').prev();
-        if (!$prev.hasClass('nd-slider__mini')) {
-            $prev = $('.nd-slider__next').prev();
-        }
-        $prev.trigger('click');
-    });
-    $(document).on('click', '.nd-slider__next, .nd-slider__main-photo', function(event) {
-        var $next = $('.nd-slider__mini.active').next();
-        if (!$next.hasClass('nd-slider__mini')) {
-            $next = $('.nd-slider__prev').next();
-        }
-        $next.trigger('click');
-    });
-
-    // Mini reviews slider
-    $(document).on('click', '.nd-reviews__next', function(event) {
-        var $current = $('.nd-reviews__review.active');
-        var $next = $current.next();
-        if (!$next.hasClass('nd-reviews__review')) {
-            $next = $('.nd-reviews__prev').next();
-        }
-        $current.fadeTo(300, 0.2, function() {
-            $current.removeClass('active');
-            $next.addClass('active').fadeTo(300, 1);
-        });
-    });
-    $(document).on('click', '.nd-reviews__prev', function(event) {
-        var $current = $('.nd-reviews__review.active');
-        var $prev = $current.prev();
-        if (!$prev.hasClass('nd-reviews__review')) {
-            $prev = $('.nd-reviews__next').prev();
-        }
-        $current.fadeTo(300, 0.2, function() {
-            $current.removeClass('active');
-            $prev.addClass('active').fadeTo(300, 1);
-        });
-    });
-    $(document).on('click', '.nd-reviews__progress__item', function(event) {
-        var $current = $('.nd-reviews__review.active');
-        var $next = $($('.nd-reviews__review').get($(this).index()));
-        $current.fadeTo(300, 0.2, function() {
-            $current.removeClass('active');
-            $next.addClass('active').fadeTo(300, 1);
-        });
     });
 
     $(".current-year").text(new Date().getFullYear());
@@ -331,7 +367,29 @@ function initMap() {
         content: contentString,
         maxWidth: 400
     });
-    marker.addListener('click', function() {
+    marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
+}
+
+// Source: https://habrahabr.ru/post/105428/
+function getNumEnding(iNumber, aEndings)
+{
+    var sEnding, i;
+    iNumber = iNumber % 100;
+    if (iNumber>=11 && iNumber<=19) {
+        sEnding=aEndings[2];
+    }
+    else {
+        i = iNumber % 10;
+        switch (i)
+        {
+            case (1): sEnding = aEndings[0]; break;
+            case (2):
+            case (3):
+            case (4): sEnding = aEndings[1]; break;
+            default: sEnding = aEndings[2];
+        }
+    }
+    return sEnding;
 }

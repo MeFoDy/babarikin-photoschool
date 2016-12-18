@@ -1,8 +1,5 @@
-@import "../common/colors";
-@import "../common/mixins";
-
 .nd-form-popup {
-    padding: 70px 80px;
+    padding: 50px;
 
     @include respond-to(phones) {
         padding: 70px 20px;

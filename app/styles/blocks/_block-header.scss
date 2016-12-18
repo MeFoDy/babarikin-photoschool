@@ -1,15 +1,9 @@
-@import "../common/colors";
-@import "../common/mixins";
-
 .nd-block-header {
     $block-header-bottom-line-width: 50px;
-
-    padding-top: 100px;
 
     @include respond-to(phones) {
         padding-top: 50px;
     }
-
 
     &--no-padding {
         padding: 0;
@@ -24,13 +18,13 @@
         text-align: center;
 
         @include respond-to(phones) {
-            font-size: 3rem;
+            font-size: 2.4rem;
+            padding: 0 0 20px 0;
         }
-
 
         &::after {
             border-bottom: 2px solid $color--primary;
-            bottom: 0;
+            bottom: -1px;
             content: '';
             display: block;
             height: 1px;
@@ -45,5 +39,12 @@
         margin: 0 auto 40px;
         max-width: 760px;
         text-align: center;
+        padding-top: 6px;
+        line-height: 1.5;
+
+        @include respond-to(phones) {
+            padding: 6px 15px 0 15px;
+        }
+
     }
 }

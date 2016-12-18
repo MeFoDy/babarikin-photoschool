@@ -1,14 +1,15 @@
 ﻿require('es6-promise').polyfill();
 
 var gulp = require('gulp');
-var gutil = require('gulp-util'),
-    gulpIf = require('gulp-if'),
-    useref = require('gulp-useref'),
-    uglify = require('gulp-uglify'),
-    cssnano = require('gulp-cssnano'),
+var cssnano = require('gulp-cssnano'),
     del = require('del'),
+    gulpIf = require('gulp-if'),
+    gutil = require('gulp-util'),
     htmlmin = require('gulp-htmlmin'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    sass = require('gulp-sass'),
+    uglify = require('gulp-uglify'),
+    useref = require('gulp-useref');
 
 var path = {};
 
@@ -53,10 +54,22 @@ gulp.task('clean:dist', function() {
     return del.sync('dist');
 });
 
+gulp.task('build:sass', function() {
+    gulp.src('app/styles/style.scss')
+        .pipe(sass())
+        .pipe(gulp.dest(function(f) {
+            return f.base;
+        }))
+});
+
 gulp.task('build', function() {
-    runSequence('clean:dist', ['useref', 'copy:fonts', 'copy:images', 'copy:js', 'copy:backend'], function() {
+    runSequence('clean:dist', 'build:sass', ['useref', 'copy:fonts', 'copy:images', 'copy:js', 'copy:backend'], function() {
         gutil.log(gutil.colors.green('✔ ') + 'Build has been completed');
     });
+});
+
+gulp.task('watch', ['build:sass'], function () {
+    gulp.watch('app/**/*.scss', ['build:sass']);
 });
 
 gulp.task('default', ['build'], function() {});

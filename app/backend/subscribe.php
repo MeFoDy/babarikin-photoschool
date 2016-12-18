@@ -3,7 +3,7 @@ date_default_timezone_set('Etc/UTC');
 
 require 'lib/PHPMailerAutoload.php';
 
-function sendMail($name, $email) {
+function sendMail($email) {
   $theme = 'Подписка на бесплатную рассылку для фотографов';
 
   $mail = new PHPMailer;
@@ -18,8 +18,6 @@ function sendMail($name, $email) {
 <p><strong>Данные лида:</strong></p>
 
 <p>
-<strong>Имя:</strong> {$name} <br>
-
 <strong>Электронный адрес:</strong> {$email} <br>
 
 <strong>Дополнительные значения:</strong><br>
@@ -33,7 +31,6 @@ EOT;
   $mail->send();
 }
 
-$name = isset($_POST['name']) ? $_POST['name'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 
 if ($email !== '') {
@@ -42,7 +39,6 @@ if ($email !== '') {
 
   // Данные о новом подписчике
   $user_email = $email;
-  $user_name = $name;
   $user_lists = "xxxxxx"; // бесплатное пособие для фотографов
   $user_ip = $_SERVER["REMOTE_ADDR"];
   $user_tag = urlencode("blenda.by - gift");
@@ -51,7 +47,6 @@ if ($email !== '') {
     'api_key' => $api_key,
     'list_ids' => $user_lists,
     'fields[email]' => $user_email,
-    'fields[Name]' => $user_name,
     'request_ip' => $user_ip,
     'tags' => $user_tag
   );
@@ -82,4 +77,6 @@ if ($email !== '') {
     // Ошибка соединения с API-сервером
     echo "API access error";
   }
+
+  sendMail($email);
 }
