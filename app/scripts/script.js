@@ -1,10 +1,20 @@
 $(function () {
     // Load user settings
     $('.nd-price__discount__description-count').text(window.statSettings.hasPlacesCount);
+    $('.nd-price__discount__description-text')
+        .text(getNumEnding(window.statSettings.hasPlacesCount, ["место", "места", "мест"]));
+
     $('.nd-price-percent').text(window.statSettings.discount);
+
     $('.nd-price__discount__subheader__important').text(window.statSettings.finalDate);
+
     $('.nd-price-price-new').text(window.statSettings.newPrice);
+    $('.nd-price-price-new-text')
+        .text(getNumEnding(window.statSettings.newPrice, ["рубль", "рубля", "рублей"]));
+
     $('.nd-price-price-old').text(window.statSettings.oldPrice);
+    $('.nd-price-price-old-text')
+        .text(getNumEnding(window.statSettings.oldPrice, ["рубль", "рубля", "рублей"]));
 
     //Fixed navigation
     var $menu = $(".nd-header");
@@ -44,16 +54,24 @@ $(function () {
     var hasBeenIncrementShowed = false;
     var counters = [{
         selector: ".nd-trust-count-years",
-        to: window.statSettings.trustYears || 10
+        to: window.statSettings.trustYears || 10,
+        textSelector: ".nd-trust-count-years-text",
+        textVariants: ["год", "года", "лет"]
     }, {
         selector: ".nd-trust-count-companies",
-        to: window.statSettings.trustCompanies || 50
+        to: window.statSettings.trustCompanies || 50,
+        textSelector: ".nd-trust-count-companies-text",
+        textVariants: ["компания", "компании", "компаний"]
     }, {
         selector: ".nd-trust-count-percent",
-        to: window.statSettings.trustPercent || 100
+        to: window.statSettings.trustPercent || 100,
+        textSelector: ".nd-trust-count-percent-text",
+        textVariants: ["процент", "процента", "процентов"]
     }, {
         selector: ".nd-trust-count-students",
-        to: window.statSettings.trustCount || 1579
+        to: window.statSettings.trustCount || 1579,
+        textSelector: ".nd-trust-count-students-text",
+        textVariants: ["человек", "человека", "человек"]
     }];
     $(window).on("scroll load resize", function () {
         if (hasBeenIncrementShowed) {
@@ -72,6 +90,8 @@ $(function () {
                         to: counter.to
                     })
                     .addClass('nd-trust__list__item__number--active');
+                $(counter.textSelector)
+                    .text(getNumEnding(counter.to, counter.textVariants));
             });
             hasBeenIncrementShowed = true;
         }
