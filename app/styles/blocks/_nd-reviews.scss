@@ -3,7 +3,7 @@
     $size--avatar-width: 250px;
     $size--quote-width: 70px;
 
-    max-width: 1140px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 80px 10px;
 
@@ -17,13 +17,13 @@
         display: flex;
         justify-content: center;
         margin: 0 auto;
-        max-width: 1140px;
+        max-width: 1100px;
     }
 
     &__review {
         display: flex;
         justify-content: center;
-        width: 945px;
+        width: 900px;
 
         @include respond-to(tablets) {
             min-width: #{$size--review-body-width + $size--avatar-width / 2 + $size--quote-width - 100px};

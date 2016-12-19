@@ -37,7 +37,6 @@ gulp.task('copy:fonts', function() {
 
 gulp.task('copy:js', function() {
     return gulp.src('app/scripts/**.js')
-        .pipe(uglify())
         .pipe(gulp.dest('dist/scripts/'));
 });
 

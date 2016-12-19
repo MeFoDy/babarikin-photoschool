@@ -49,6 +49,25 @@ $(function () {
         $(this).toggleClass('active');
         $('.nd-header__phones__dropdown').toggleClass('active');
     });
+    var isPhonesBlockAnimationInProgress = false;
+    $(window).on("scroll load resize", function () {
+        if (!isPhonesBlockAnimationInProgress) {
+            isPhonesBlockAnimationInProgress = true;
+            $('.nd-header__phones__arrow').removeClass('active');
+            $('.nd-header__phones__dropdown').fadeOut(600, function () {
+                $(this).removeClass('active').removeAttr("style");
+                isPhonesBlockAnimationInProgress = false;
+            });
+        }
+    });
+
+    $('.nd-flex-composite-grid__item').click(function () {
+        var isActive = $(this).hasClass("active");
+        $('.nd-flex-composite-grid__item').removeClass("active");
+        if (!isActive) {
+            $(this).addClass("active");
+        }
+    });
 
     // Spincrement
     var hasBeenIncrementShowed = false;

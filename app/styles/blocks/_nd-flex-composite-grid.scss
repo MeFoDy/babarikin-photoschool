@@ -44,7 +44,7 @@
             min-width: 100vw;
         }
 
-        &:hover {
+        &:hover, &:active, &:focus, &.active {
             .nd-services__darken-item {
                 background: rgba(0, 0, 0, 0.4);
             }
@@ -56,7 +56,7 @@
             .nd-flex-composite-grid__item__subtitle {
                 color: $color--light;
                 max-height: 1000px;
-                opacity: 1;
+                opacity: 0.99;
             }
 
             .nd-services__bg-item {
@@ -99,8 +99,8 @@
             max-height: 0;
             opacity: 0;
             overflow-y: hidden;
-            transition: ease max-height 1s,
-                        ease opacity 0.5s;
+            transition: max-height 1s,
+                        opacity 0.5s;
 
             @include respond-to(tablets-phones) {
                 display: block;
