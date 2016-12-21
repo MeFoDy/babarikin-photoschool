@@ -8,8 +8,10 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 gaTrack('/');
 
 function gaTrack(page) {
-    ga('set', 'page', page);
-    ga('send', 'pageview');
+    if (ga && typeof ga === "function") {
+        ga('set', 'page', page);
+        ga('send', 'pageview');
+    }
 }
 
 // Yandex Metrika
@@ -43,7 +45,9 @@ function gaTrack(page) {
 })(document, window, "yandex_metrika_callbacks");
 
 function yaHit(page) {
-    yaCounter00000000.hit(page);
+    if (window.yaCounter28052760) {
+        window.yaCounter28052760.hit(page);
+    }
 }
 
 // Jivosite
