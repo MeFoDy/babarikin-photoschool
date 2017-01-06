@@ -317,7 +317,9 @@
   text-indent: -5000px;
   top: 20px;
   transform: rotate(45deg);
-  width: 30px; }
+  width: 30px;
+  z-index: 10;
+  opacity: 0.99; }
   .close-modal-button::before {
     background: #bebebe;
     border-radius: 2px;
@@ -1355,6 +1357,9 @@
   .nd-terms__subheader {
     color: #48d9b3;
     font-size: 2.8rem; }
+    @media only screen and (max-width: 800px) {
+      .nd-terms__subheader {
+        font-size: 2.1rem; } }
   .nd-terms__text {
     line-height: 1.4;
     margin: 0; }

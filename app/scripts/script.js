@@ -150,6 +150,8 @@ $(function () {
     });
 
     // Init popups
+    var openedPopups = [];
+    var isInOpening = false;
     var baseModalSettings = {
         width: '750px',
         padding: 0,
@@ -164,7 +166,23 @@ $(function () {
         transitionIn: 'fadeInDown',
         transitionOut: 'fadeOutDown',
         focusInput: false,
+        onOpening: function (modal) {
+            isInOpening = true;
+            openedPopups.forEach(function (popup) {
+                popup.close();
+            });
+            isInOpening = false;
+            openedPopups.push(modal);
+        },
         onClosing: function () {
+            if (isInOpening) {
+                return;
+            }
+            openedPopups.pop();
+            if (openedPopups.length) {
+                var previousPopup = openedPopups.pop();
+                previousPopup.open();
+            }
             gaTrack('/');
             yaHit('/');
         }
@@ -412,22 +430,24 @@ function initMap() {
 }
 
 // Source: https://habrahabr.ru/post/105428/
-function getNumEnding(iNumber, aEndings)
-{
+function getNumEnding(iNumber, aEndings) {
     var sEnding, i;
     iNumber = iNumber % 100;
-    if (iNumber>=11 && iNumber<=19) {
-        sEnding=aEndings[2];
-    }
-    else {
+    if (iNumber >= 11 && iNumber <= 19) {
+        sEnding = aEndings[2];
+    } else {
         i = iNumber % 10;
-        switch (i)
-        {
-            case (1): sEnding = aEndings[0]; break;
+        switch (i) {
+            case (1):
+                sEnding = aEndings[0];
+                break;
             case (2):
             case (3):
-            case (4): sEnding = aEndings[1]; break;
-            default: sEnding = aEndings[2];
+            case (4):
+                sEnding = aEndings[1];
+                break;
+            default:
+                sEnding = aEndings[2];
         }
     }
     return sEnding;
