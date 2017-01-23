@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes mouse-anim {
   0% {
     transform: translateY(6px); }
@@ -428,6 +429,27 @@
         .nd-contact__list__item__text-link {
           text-decoration: none;
           color: #545758; }
+
+.nd-course-standart {
+  line-height: 1.4; }
+  .nd-course-standart__lesson__title {
+    color: #48d9b3;
+    font-size: 2rem;
+    margin: 0; }
+    @media only screen and (max-width: 800px) {
+      .nd-course-standart__lesson__title {
+        font-size: 1.8rem; } }
+  .nd-course-standart__lesson__list {
+    padding-left: 20px; }
+    @media only screen and (max-width: 800px) {
+      .nd-course-standart__lesson__list {
+        font-size: 1.6rem; } }
+    .nd-course-standart__lesson__list li {
+      list-style-type: none; }
+      .nd-course-standart__lesson__list li::before {
+        color: #48d9b3;
+        content: "— ";
+        padding-right: 5px; }
 
 .nd-flex-composite-grid {
   display: flex; }
@@ -883,8 +905,7 @@
       color: #fff;
       font-size: 3rem;
       line-height: 1.5;
-      margin: 30px 0;
-      text-transform: uppercase; }
+      margin: 30px 0; }
       .nd-price__discount__subheader__important {
         color: #48d9b3; }
       @media only screen and (max-width: 800px) {
@@ -918,6 +939,13 @@
       color: #bebebe;
       font-size: 2.4rem;
       margin-top: 30px; }
+    .nd-price__discount__link {
+      font-size: 2rem;
+      margin-top: 30px; }
+      .nd-price__discount__link a {
+        border-bottom: 1px dashed #bebebe;
+        color: #bebebe;
+        text-decoration: none; }
   .nd-price__form {
     flex: 4 33%; }
     @media only screen and (max-width: 800px) {

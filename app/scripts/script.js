@@ -6,7 +6,7 @@ $(function () {
 
     $('.nd-price-percent').text(window.statSettings.discount);
 
-    $('.nd-price__discount__subheader__important').text(window.statSettings.finalDate);
+    $('.nd-price__discount__date').text(window.statSettings.finalDate);
 
     $('.nd-price-price-new').text(window.statSettings.newPrice);
     $('.nd-price-price-new-text')
@@ -194,7 +194,13 @@ $(function () {
     $("#nd-more").iziModal($.extend({}, baseModalSettings, {
         width: '900px'
     }));
-    $("#nd-free-gift-form, #nd-courses-form, #nd-call-form, #nd-success-gift-form, #nd-menu-form, #nd-gift-form").iziModal(baseModalSettings);
+    $("#nd-free-gift-form, " +
+        "#nd-courses-form, " +
+        "#nd-call-form, " +
+        "#nd-success-gift-form, " +
+        "#nd-menu-form, " +
+        "#nd-gift-form, " +
+        "#nd-course-standart").iziModal(baseModalSettings);
     var iziForms = [{
         trigger: '.nd-terms__trigger',
         target: '#nd-terms'
@@ -216,6 +222,9 @@ $(function () {
         target: "#nd-success-gift-form"
     }, {
         target: "#nd-gift-form"
+    }, {
+        trigger: '.nd-course-standart__trigger',
+        target: "#nd-course-standart"
     }];
     iziForms.forEach(function (iziForm) {
         if (iziForm.trigger) {
