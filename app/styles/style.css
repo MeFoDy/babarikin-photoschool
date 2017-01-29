@@ -395,15 +395,12 @@
     text-align: center;
     padding: 0 20px; }
     .nd-ageblock__name span {
-      font-weight: 600;
+      font-weight: bold;
       color: #545758; }
 
 .nd-contact {
-  padding: 80px 0 0;
+  padding: 80px 0 50px;
   background-color: #f0f0f0; }
-  .nd-contact__google-map {
-    height: 520px;
-    width: 100%; }
   .nd-contact__list {
     align-items: center;
     display: flex;
@@ -656,6 +653,7 @@
     .nd-gift__discount__description {
       color: #fff;
       font-size: 2.4rem;
+      margin-bottom: 30px;
       margin-top: 50px;
       line-height: 1.41667; }
     .nd-gift__discount__call {
@@ -663,6 +661,30 @@
       font-size: 2.4rem;
       line-height: 1.41667;
       padding-top: 10px; }
+    .nd-gift__discount__is {
+      color: #48d9b3;
+      display: inline-block;
+      font-size: 2.8rem;
+      margin-right: 30px;
+      text-transform: uppercase; }
+      .nd-gift__discount__is .number {
+        font-size: 6.4rem; }
+    .nd-gift__discount__was {
+      color: #fff;
+      display: inline-block;
+      font-size: 2.4rem;
+      position: relative;
+      text-transform: uppercase; }
+      .nd-gift__discount__was .number {
+        font-size: 4.8rem; }
+      .nd-gift__discount__was::after {
+        border-bottom: 3px solid #48d9b3;
+        bottom: 2.1rem;
+        content: "";
+        left: 0;
+        margin-left: -5px;
+        position: absolute;
+        width: calc(100% + 10px); }
   .nd-gift__form {
     flex: 4 33%; }
     .nd-gift__form .nd-contact-form-group {
@@ -853,6 +875,63 @@
         .nd-header--fixed .nd-header__phones__main-phone__link {
           color: #545758; }
 
+.nd-learning {
+  padding: 80px 0 80px 0;
+  background: #f0f0f0; }
+  .nd-learning__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    counter-reset: learning-steps-counter; }
+    .nd-learning__list__item {
+      display: block;
+      flex: 1 200px;
+      margin-bottom: 30px;
+      max-width: 225px;
+      padding: 0 30px 40px;
+      position: relative;
+      text-align: center;
+      counter-increment: learning-steps-counter; }
+      .nd-learning__list__item__icon {
+        color: #48d9b3;
+        display: block;
+        font-size: 5rem;
+        height: 100px;
+        margin: 0 auto 20px;
+        padding-top: 40px;
+        position: relative;
+        width: 100px; }
+        .nd-learning__list__item__icon:hover {
+          transform: scale(1.05); }
+      .nd-learning__list__item__description {
+        font-size: 1.6rem; }
+      .nd-learning__list__item::after {
+        background-color: #f0f0f0;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        bottom: 0;
+        box-sizing: border-box;
+        color: #48d9b3;
+        content: counter(learning-steps-counter);
+        display: block;
+        font-size: 1.8rem;
+        height: 35px;
+        left: 50%;
+        line-height: 29px;
+        position: absolute;
+        transform: translate(-50%, 50%);
+        width: 35px;
+        z-index: 1; }
+      .nd-learning__list__item::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 10000px;
+        left: -5000px;
+        bottom: -1px;
+        height: 0;
+        border-bottom: 2px solid #48d9b3; }
+
 .nd-menu-form {
   align-items: center;
   background-color: rgba(20, 20, 20, 0.9);
@@ -877,6 +956,10 @@
   line-height: 1.4;
   margin: 0; }
 
+.nd-more__link {
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor; }
+
 .nd-price {
   background: url("../images/jpg/price.jpg") no-repeat center center;
   background-size: cover;
@@ -896,21 +979,22 @@
         padding-bottom: 50px; } }
     .nd-price__discount__header {
       color: #fff;
-      font-size: 4.8rem;
+      font-size: 3.8rem;
+      line-height: 1.46;
       text-transform: uppercase; }
       @media only screen and (max-width: 800px) {
         .nd-price__discount__header {
-          font-size: 3rem; } }
+          font-size: 2.8rem; } }
     .nd-price__discount__subheader {
       color: #fff;
-      font-size: 3rem;
+      font-size: 2.1rem;
       line-height: 1.5;
       margin: 30px 0; }
       .nd-price__discount__subheader__important {
         color: #48d9b3; }
       @media only screen and (max-width: 800px) {
         .nd-price__discount__subheader {
-          font-size: 2.4rem; } }
+          font-size: 1.8rem; } }
     .nd-price__discount__is {
       color: #48d9b3;
       display: inline-block;
@@ -953,7 +1037,7 @@
         flex: 1 100%; } }
 
 .nd-questions {
-  background: url("../images/jpg/questions.jpg") no-repeat center center;
+  background: #fff;
   background-size: cover;
   padding: 80px 0; }
   .nd-questions__form {
@@ -1391,60 +1475,6 @@
   .nd-terms__text {
     line-height: 1.4;
     margin: 0; }
-
-.nd-trust {
-  padding: 80px 0 40px 0;
-  background: #f0f0f0; }
-  .nd-trust__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; }
-    .nd-trust__list__item {
-      display: block;
-      flex: 1 250px;
-      max-width: 300px;
-      margin-bottom: 40px;
-      padding: 0 30px;
-      text-align: center; }
-      .nd-trust__list__item__circle {
-        display: block;
-        height: 170px;
-        margin: 0 auto 20px;
-        padding-top: 40px;
-        position: relative;
-        width: 170px; }
-        .nd-trust__list__item__circle::after {
-          border: 2px solid #48d9b3;
-          border-radius: 50%;
-          content: '';
-          display: block;
-          height: 170px;
-          left: -3px;
-          position: absolute;
-          top: 0;
-          width: 170px; }
-        .nd-trust__list__item__circle::before {
-          border: 2px solid rgba(72, 217, 179, 0.6);
-          border-radius: 50%;
-          content: '';
-          display: block;
-          height: 170px;
-          left: 3px;
-          position: absolute;
-          top: 0;
-          width: 170px; }
-      .nd-trust__list__item__number {
-        display: block;
-        font-size: 6rem;
-        font-weight: bold; }
-        .nd-trust__list__item__number--active {
-          opacity: 1 !important;
-          transition: opacity 1s; }
-      .nd-trust__list__item__text {
-        display: block;
-        position: absolute;
-        bottom: 40px;
-        width: 100%; }
 
 .nd-video {
   background: url("../images/jpg/video.jpg") no-repeat center center;

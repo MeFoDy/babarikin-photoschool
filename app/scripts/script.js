@@ -1,20 +1,29 @@
 $(function () {
     // Load user settings
-    $('.nd-price__discount__description-count').text(window.statSettings.hasPlacesCount);
-    $('.nd-price__discount__description-text')
-        .text(getNumEnding(window.statSettings.hasPlacesCount, ["место", "места", "мест"]));
-
-    $('.nd-price-percent').text(window.statSettings.discount);
-
-    $('.nd-price__discount__date').text(window.statSettings.finalDate);
-
-    $('.nd-price-price-new').text(window.statSettings.newPrice);
-    $('.nd-price-price-new-text')
-        .text(getNumEnding(window.statSettings.newPrice, ["рубль", "рубля", "рублей"]));
-
-    $('.nd-price-price-old').text(window.statSettings.oldPrice);
-    $('.nd-price-price-old-text')
-        .text(getNumEnding(window.statSettings.oldPrice, ["рубль", "рубля", "рублей"]));
+    $('.nd-gift-percent').text(window.statSettings.discount);
+    var prices = [
+        {
+            selector: '.nd-gift-price-new',
+            value: window.statSettings.newPrice
+        }, {
+            selector: '.nd-gift-price-old',
+            value: window.statSettings.oldPrice
+        }, {
+            selector: '.nd-price-price-new',
+            value: window.statSettings.newPriceLightroom
+        }, {
+            selector: '.nd-price-price-old',
+            value: window.statSettings.oldPriceLightroom
+        }, {
+            selector: '.nd-price-economy',
+            value: window.statSettings.economyLightroom
+        }
+    ];
+    prices.forEach(function (price) {
+        $(price.selector).text(price.value);
+        $(price.selector + '-text')
+            .text(getNumEnding(price.value, ["рубль", "рубля", "рублей"]));
+    });
 
     //Fixed navigation
     var $menu = $(".nd-header");
@@ -66,53 +75,6 @@ $(function () {
         $('.nd-flex-composite-grid__item').removeClass("active");
         if (!isActive) {
             $(this).addClass("active");
-        }
-    });
-
-    // Spincrement
-    var hasBeenIncrementShowed = false;
-    var counters = [{
-        selector: ".nd-trust-count-years",
-        to: window.statSettings.trustYears || 10,
-        textSelector: ".nd-trust-count-years-text",
-        textVariants: ["год", "года", "лет"]
-    }, {
-        selector: ".nd-trust-count-companies",
-        to: window.statSettings.trustCompanies || 50,
-        textSelector: ".nd-trust-count-companies-text",
-        textVariants: ["компания", "компании", "компаний"]
-    }, {
-        selector: ".nd-trust-count-percent",
-        to: window.statSettings.trustPercent || 100,
-        textSelector: ".nd-trust-count-percent-text",
-        textVariants: ["процент", "процента", "процентов"]
-    }, {
-        selector: ".nd-trust-count-students",
-        to: window.statSettings.trustCount || 1579,
-        textSelector: ".nd-trust-count-students-text",
-        textVariants: ["человек", "человека", "человек"]
-    }];
-    $(window).on("scroll load resize", function () {
-        if (hasBeenIncrementShowed) {
-            return false;
-        }
-        var countbox = $(".nd-trust");
-        var windowTop = $(window).scrollTop();
-        var elementTop = $(countbox).offset().top;
-        var windowHeight = $(window).height();
-        if (windowTop + windowHeight >= elementTop) {
-            counters.forEach(function (counter) {
-                $(counter.selector)
-                    .spincrement({
-                        thousandSeparator: "",
-                        duration: 2000,
-                        to: counter.to
-                    })
-                    .addClass('nd-trust__list__item__number--active');
-                $(counter.textSelector)
-                    .text(getNumEnding(counter.to, counter.textVariants));
-            });
-            hasBeenIncrementShowed = true;
         }
     });
 
@@ -248,7 +210,7 @@ $(function () {
                 openGiftFormAfterDelay(5000);
             }
         }, delay);
-    })(60000);
+    })(90000);
 
     $(document).on('click', '.nd-menu-form__list__item', function (event) {
         $('#nd-menu-form').iziModal('close');
@@ -390,52 +352,6 @@ function supports_html5_storage() {
     } catch (e) {
         return false;
     }
-}
-
-var map;
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById('google-map'), {
-        center: {
-            lat: 53.903467,
-            lng: 27.563767
-        },
-        zoom: 17,
-        scrollwheel: false,
-        styles: [{
-            "featureType": "all",
-            "elementType": "all",
-            "stylers": [{
-                "saturation": -100
-            }, {
-                "gamma": 0.5
-            }]
-        }]
-    });
-    var marker = new google.maps.Marker({
-        position: {
-            lat: 53.903467,
-            lng: 27.563767
-        },
-        map: map,
-        title: 'Фотошкола Павла Бабарыкина',
-        icon: 'images/png/placeholder-small.png'
-    });
-    var contentString = '<div id="content">' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h1 id="firstHeading" class="firstHeading">Фотошкола Павла Бабарыкина</h1>' +
-        '<div id="bodyContent">' +
-        '<p>пр. Независимости, 25</p>' +
-        '</div>' +
-        '</div>';
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 400
-    });
-    marker.addListener('click', function () {
-        infowindow.open(map, marker);
-    });
 }
 
 // Source: https://habrahabr.ru/post/105428/

@@ -1,16 +1,9 @@
 window.statSettings = {
+	oldPrice: 48, // старая цена курсов онлайн
+	newPrice: 29, // новая цена курсов онлайн
 
-	hasPlacesCount: 3, // количество свободных мест
-
-	/*     Блок "Нам стоит доверять"     */
-	trustYears: 13, // опыт съемки у преподавателя
-	trustCompanies: 79, // компаний отправили сотрудников на обучение
-	trustPercent: 100, // процентов результат
-	trustCount: 2813, // прошли обучение
-
-	oldPrice: 46, // старая цена
-	newPrice: 29, // новая цена
-	finalDate: '30 января' // дата конца скидки
-
+	oldPriceLightroom: 170, // старая цена двух курсов в одном с Lightroom
+	newPriceLightroom: 120 // новая цена двух курсов в одном с Lightroom
 };
 window.statSettings.discount = ((window.statSettings.oldPrice - window.statSettings.newPrice) * 100 / window.statSettings.oldPrice).toFixed(0);
+window.statSettings.economyLightroom = (window.statSettings.oldPriceLightroom - window.statSettings.newPriceLightroom).toFixed(0);

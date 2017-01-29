@@ -14,7 +14,7 @@ function sendMail($email) {
 
   $mail->Body = <<<EOT
 <p>Здравствуйте.</p>
-<p>Получен новый запрос на бесплатную рассылку для фотографов с целевой страницы: <a href="http://blenda.by">blenda.by</a></p>
+<p>Получен новый запрос на бесплатную рассылку для фотографов с целевой страницы: <a href="http://online.blenda.by">online.blenda.by</a></p>
 <p><strong>Данные лида:</strong></p>
 
 <p>
@@ -56,7 +56,7 @@ if ($email !== '') {
   curl_setopt($ch, CURLOPT_POST, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $POST);
   curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-  curl_setopt($ch, CURLOPT_URL, 'http://api.unisender.com/ru/api/subscribe?format=json');
+  curl_setopt($ch, CURLOPT_URL, 'https://api.unisender.com/ru/api/subscribe?format=json');
   $result = curl_exec($ch);
 
   if ($result) {

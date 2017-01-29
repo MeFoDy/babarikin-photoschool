@@ -26,7 +26,7 @@ if ($phone !== '') {
 
 	$mail->Body = <<<EOT
 <p>Здравствуйте.</p>
-<p>Получен новый лид с целевой страницы: <a href="http://blenda.by">blenda.by</a></p>
+<p>Получен новый лид с целевой страницы: <a href="http://online.blenda.by">online.blenda.by</a></p>
 <p><strong>Данные лида:</strong></p>
 
 <p>
