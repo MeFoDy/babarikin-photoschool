@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
 		<link rel="stylesheet" href="../node_modules/izimodal/css/iziModal.min.css">
 		<link rel="stylesheet" href="../node_modules/swiper/dist/css/swiper.min.css">
+		<link rel="stylesheet" href="../node_modules/lightbox2/dist/css/lightbox.min.css">
 		<link rel="stylesheet" href="styles/blenda-icons.css">
 		<link rel="stylesheet" href="styles/style.css">
 		<!-- endbuild -->
@@ -85,7 +86,12 @@
 						<div class="nd-contact-form-group__bar"></div>
 						<label for="nd-gift__form__phone">Введите ваш телефон</label>
 					</div>
-					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Заявка на участие в бесплатном занятии">
+					<div class="nd-contact-form-group">
+						<input type="text" id="nd-gift__form__email" required="required">
+						<div class="nd-contact-form-group__bar"></div>
+						<label for="nd-gift__form__email">Введите ваш Email</label>
+					</div>
+					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Скидка 40%">
 						<span class="nd-button-cta__btn__corners--left"></span>
 						<span class="nd-button-cta__btn__text">Записаться со скидкой</span>
 						<span class="nd-button-cta__btn__corners--right"></span>
@@ -271,7 +277,7 @@
 		<section class="nd-stoke nd-full-width-block">
 			<div class="nd-block-header">
 				<h4 class="nd-block-header__header">С нами все это становится возможным</h4>
-				<p class="nd-block-header__subheader">У вас есть фотоаппарат, но вы не знаете как делать впечатляющие фотографии? Тогда записывайтесь на интенсивный курс по
+				<p class="nd-block-header__subheader">У вас есть фотоаппарат, но вы не знаете как делать впечатляющие фотографии? Тогда записывайтесь на онлайн курс по
 					фотосъемке, на котором вы с легкостью научитесь всем тонкостям фотоискусства.</p>
 			</div>
 			<div class="nd-stoke__btn nd-courses-form">
@@ -357,7 +363,12 @@
 						<div class="nd-contact-form-group__bar"></div>
 						<label for="nd-contact__form__phone">Введите ваш телефон</label>
 					</div>
-					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Заявка со скидкой">
+					<div class="nd-contact-form-group">
+						<input type="text" id="nd-contact__form__email" required="required">
+						<div class="nd-contact-form-group__bar"></div>
+						<label for="nd-contact__form__email">Введите ваш Email</label>
+					</div>
+					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Заявка на два курса">
 						<span class="nd-button-cta__btn__corners--left"></span>
 						<span class="nd-button-cta__btn__text">Записаться со скидкой</span>
 						<span class="nd-button-cta__btn__corners--right"></span>
@@ -373,75 +384,115 @@
 
 		<section class="nd-slider nd-full-width-block" id="portfolio">
 			<div class="nd-block-header">
-				<h4 class="nd-block-header__header">Как проходят занятия в фотошколе</h4>
+				<h4 class="nd-block-header__header">Примеры наших работ</h4>
 				<p class="nd-block-header__subheader">
 					Занятия в нашей фотошколе по-настоящему захватывающи и интересны. <br> Благодаря нашей атмосфере каждый почувствует
 					себя фотографом!
 				</p>
 			</div>
-			<!-- Swiper -->
-			<div class="swiper-container gallery-top nd-slider__main-photo">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-1.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-2.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-3.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-4.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-5.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-6.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-7.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-8.jpg')"></div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-9.jpg')"></div>
-				</div>
-			</div>
-			<div class="swiper-container gallery-thumbs nd-slider__panel">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-1.jpg')">
-						<div class="swiper-slide-bg"></div>
+			<div class="nd-tab">
+				<div class="nd-tab__header">
+					<div class="nd-tab__header__title nd-tab__header__title--active" data-target="portfolio-students">
+						<h4 class="nd-tab__header__title__header">01. Первые работы учеников</h4>
+						<h4 class="nd-tab__header__title__subheader">Многие из представленных работ сделаны<br> уже после первых занятий</h4>
 					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-2.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-3.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-4.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-5.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-6.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-7.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-8.jpg')">
-						<div class="swiper-slide-bg"></div>
-					</div>
-					<div class="swiper-slide" style="background-image:url('images/jpg/slider-9.jpg')">
-						<div class="swiper-slide-bg"></div>
+					<div class="nd-tab__header__title" data-target="portfolio-teachers">
+						<h4 class="nd-tab__header__title__header">02. Работы преподавателей</h4>
+						<h4 class="nd-tab__header__title__subheader">Виталий Шохан &mdash; сертифицированный фотограф Google<br> с опытом съемки более 15 лет</h4>
 					</div>
 				</div>
-			</div>
-			<!-- Add Arrows -->
-			<div class="swiper-button-next swiper-button-next-thumbs">
-				<svg class="swiper-button-next-slider-icon" viewBox="0 226.297 595.279 389.296">
-					<g>
-						<g>
-							<polygon points="595.28,410.011 41.88,410.011 210.122,241.768 194.653,226.297 0,420.94 194.653,615.593     210.122,600.146 41.867,431.871 595.28,431.871   "></polygon>
-						</g>
-					</g>
-				</svg>
-			</div>
-			<div class="swiper-button-prev swiper-button-prev-thumbs">
-				<svg class="swiper-button-prev-slider-icon" viewBox="0 226.297 595.279 389.296">
-					<g>
-						<g>
-							<polygon points="595.28,410.011 41.88,410.011 210.122,241.768 194.653,226.297 0,420.94 194.653,615.593     210.122,600.146 41.867,431.871 595.28,431.871   "></polygon>
-						</g>
-					</g>
-				</svg>
+				<div class="nd-tab__content">
+					<div class="nd-tab__content__container nd-tab__content__container--active" id="portfolio-students">
+						<div class="nd-slider__photos">
+							<div class="nd-slider__photos__photo nd-slider__photos__photo--big">
+								<a href="./images/jpg/students/full/1.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/1.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/students/full/2.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/2.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/students/full/3.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/3.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/students/full/4.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/4.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/students/full/5.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/5.jpg"></a>
+							</div>
+
+							<div class="nd-slider__photos__photo nd-slider__photos__photo--big hidden">
+								<a href="./images/jpg/students/full/6.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/6.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo nd-slider__photos__photo--big hidden">
+								<a href="./images/jpg/students/full/7.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/7.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo nd-slider__photos__photo--right nd-slider__photos__photo--big hidden">
+								<a href="./images/jpg/students/full/9.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/9.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/students/full/8.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/8.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/students/full/10.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/10.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/students/full/12.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/12.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/students/full/11.jpg" data-lightbox="students"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/students/11.jpg"></a>
+							</div>
+						</div>
+						<div class="nd-slider__show-more"><span class="nd-slider__show-more__text">Показать больше работ</span></div>
+					</div>
+					<div class="nd-tab__content__container" id="portfolio-teachers">
+						<div class="nd-slider__photos">
+							<div class="nd-slider__photos__photo nd-slider__photos__photo--big">
+								<a href="./images/jpg/teachers/full/1.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/1.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/teachers/full/2.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/2.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/teachers/full/3.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/3.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/teachers/full/4.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/4.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo">
+								<a href="./images/jpg/teachers/full/5.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/5.jpg"></a>
+							</div>
+
+							<div class="nd-slider__photos__photo nd-slider__photos__photo--right nd-slider__photos__photo--big hidden">
+								<a href="./images/jpg/teachers/full/6.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/6.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/7.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/7.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/8.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/8.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/9.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/9.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/10.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/10.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/11.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/11.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/12.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/12.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/13.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/13.jpg"></a>
+							</div>
+							<div class="nd-slider__photos__photo hidden">
+								<a href="./images/jpg/teachers/full/14.jpg" data-lightbox="teachers"><img src="./images/jpg/bg.jpg" data-src="./images/jpg/teachers/14.jpg"></a>
+							</div>
+						</div>
+						<div class="nd-slider__show-more"><span class="nd-slider__show-more__text">Показать больше работ</span></div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -668,9 +719,9 @@
 
 		<section class="nd-contact nd-full-width-block" id="contact">
 			<div class="nd-block-header">
-				<h4 class="nd-block-header__header">Где мы располагаемся</h4>
+				<h4 class="nd-block-header__header">Как с нами связаться</h4>
 				<p class="nd-block-header__subheader">
-					Занятия проходят в профессиональной фотостудии DIVA
+					Фотошкола Павла Бабарыкина &mdash; крупнейшая фотошкола в Беларуси
 				</p>
 			</div>
 			<div class="nd-contact__list">
@@ -678,7 +729,7 @@
 					<div class="nd-contact__list__item__icon">
 						<i class="icon-location"></i>
 					</div>
-					<div class="nd-contact__list__item__text">пр. Независимости, 25</div>
+					<div class="nd-contact__list__item__text">г.&nbsp;Минск, пр.&nbsp;Независимости,&nbsp;25</div>
 				</div>
 				<div class="nd-contact__list__item">
 					<div class="nd-contact__list__item__icon">
@@ -717,7 +768,7 @@
 					<div class="nd-contact-form-group__bar"></div>
 					<label for="nd-questions__form__phone">Введите ваш телефон</label>
 				</div>
-				<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Вопросы о курсах">
+				<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Вопросы об онлайн курсе">
 					<span class="nd-button-cta__btn__corners--left"></span>
 					<span class="nd-button-cta__btn__text">Отправить заявку</span>
 					<span class="nd-button-cta__btn__corners--right"></span>
@@ -777,6 +828,11 @@
 						<div class="nd-contact-form-group__bar"></div>
 						<label for="nd-free-gift__form__phone">Введите ваш телефон</label>
 					</div>
+					<div class="nd-contact-form-group">
+						<input type="text" id="nd-free-gift__form__email" required="required">
+						<div class="nd-contact-form-group__bar"></div>
+						<label for="nd-free-gift__form__email">Введите ваш Email</label>
+					</div>
 					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Заявка на курс по обработке фотографий в подарок">
 						<span class="nd-button-cta__btn__corners--left"></span>
 						<span class="nd-button-cta__btn__text">Отправить заявку на курс в подарок</span>
@@ -811,7 +867,12 @@
 						<div class="nd-contact-form-group__bar"></div>
 						<label for="nd-courses-form__form__phone">Введите ваш телефон</label>
 					</div>
-					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Заявка на курс">
+					<div class="nd-contact-form-group">
+						<input type="text" id="nd-courses-form__form__email" required="required">
+						<div class="nd-contact-form-group__bar"></div>
+						<label for="nd-courses-form__form__email">Введите ваш Email</label>
+					</div>
+					<button type="button" class="nd-button-cta__btn nd-contact-form__btn nd-submit" data-theme="Записаться на курс">
 						<span class="nd-button-cta__btn__corners--left"></span>
 						<span class="nd-button-cta__btn__text">Отправить заявку</span>
 						<span class="nd-button-cta__btn__corners--right"></span>
@@ -1082,17 +1143,19 @@
 			</div>
 		</div>
 
-		<script src="scripts/count.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<!-- build:js scripts/main.min.js -->
-		<script src="scripts/script.js"></script>
-		<script src="scripts/vendors/jquery.maskedinput.min.js"></script>
-		<script src="scripts/vendors/jquery.spincrement.min.js"></script>
-		<script src="../node_modules/izimodal/js/iziModal.min.js"></script>
-		<script src="../node_modules/swiper/dist/js/swiper.jquery.min.js"></script>
-		<script src="scripts/vendors/superembed.js"></script>
+		<script src="scripts/count.js" defer></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" defer></script>
+		<!-- build:js scripts/main.min.js defer -->
+		<script src="scripts/vendors/jquery.maskedinput.min.js" defer></script>
+		<script src="scripts/vendors/jquery.spincrement.min.js" defer></script>
+		<script src="scripts/vendors/jquery.unveil.js" defer></script>
+		<script src="../node_modules/izimodal/js/iziModal.min.js" defer></script>
+		<script src="../node_modules/swiper/dist/js/swiper.jquery.min.js" defer></script>
+		<script src="../node_modules/lightbox2/dist/js/lightbox.min.js" defer></script>
+		<script src="scripts/vendors/superembed.js" defer></script>
+		<script src="scripts/script.js" defer></script>
 		<!-- endbuild -->
-		<script src="scripts/analytics.js"></script>
+		<script src="scripts/analytics.js" defer></script>
 	</body>
 
 </html>

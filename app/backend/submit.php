@@ -6,6 +6,7 @@ require 'lib/PHPMailerAutoload.php';
 
 $name = isset($_POST['name']) ? $_POST['name'] : '';
 $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
 $theme = isset($_POST['theme']) ? $_POST['theme'] : 'Заказ обратного звонка';
 $url = $_SERVER["HTTP_REFERER"];
 $parts = parse_url($url);
@@ -33,6 +34,8 @@ if ($phone !== '') {
 <strong>Имя:</strong> {$name} <br>
 
 <strong>Телефон:</strong> {$phone} <br>
+
+<strong>Email:</strong> {$email} <br>
 
 <strong>Имя формы:</strong> {$theme} <br>
 

@@ -31,6 +31,7 @@
 @import "blocks/nd-stoke";
 @import "blocks/nd-success-popup";
 @import "blocks/nd-terms";
+@import "blocks/nd-tab";
 //@import "blocks/nd-trust";
 @import "blocks/nd-video";
 
@@ -78,4 +79,8 @@ body {
             margin: 20px 10px;
         }
     }
+}
+
+.hidden {
+    display: none;
 }

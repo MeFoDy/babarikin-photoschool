@@ -1,24 +1,22 @@
 $(function () {
     // Load user settings
     $('.nd-gift-percent').text(window.statSettings.discount);
-    var prices = [
-        {
-            selector: '.nd-gift-price-new',
-            value: window.statSettings.newPrice
-        }, {
-            selector: '.nd-gift-price-old',
-            value: window.statSettings.oldPrice
-        }, {
-            selector: '.nd-price-price-new',
-            value: window.statSettings.newPriceLightroom
-        }, {
-            selector: '.nd-price-price-old',
-            value: window.statSettings.oldPriceLightroom
-        }, {
-            selector: '.nd-price-economy',
-            value: window.statSettings.economyLightroom
-        }
-    ];
+    var prices = [{
+        selector: '.nd-gift-price-new',
+        value: window.statSettings.newPrice
+    }, {
+        selector: '.nd-gift-price-old',
+        value: window.statSettings.oldPrice
+    }, {
+        selector: '.nd-price-price-new',
+        value: window.statSettings.newPriceLightroom
+    }, {
+        selector: '.nd-price-price-old',
+        value: window.statSettings.oldPriceLightroom
+    }, {
+        selector: '.nd-price-economy',
+        value: window.statSettings.economyLightroom
+    }];
     prices.forEach(function (price) {
         $(price.selector).text(price.value);
         $(price.selector + '-text')
@@ -35,6 +33,7 @@ $(function () {
         } else if (scrollTop <= headerHeight) {
             $menu.removeClass("nd-header--fixed");
         }
+        $(window).trigger("lookup");
     });
 
     // Smooth scroll to :target links
@@ -77,25 +76,6 @@ $(function () {
             $(this).addClass("active");
         }
     });
-
-    // Swiper Portfolio initialization
-    var galleryTop = new Swiper('.gallery-top', {
-        autoplay: 4000,
-        spaceBetween: 10,
-        grabCursor: true
-    });
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-        spaceBetween: 0,
-        slidesPerView: 'auto',
-        centeredSlides: true,
-        touchRatio: 0.2,
-        slideToClickedSlide: true,
-        grabCursor: true,
-        nextButton: '.swiper-button-next-thumbs',
-        prevButton: '.swiper-button-prev-thumbs'
-    });
-    galleryTop.params.control = galleryThumbs;
-    galleryThumbs.params.control = galleryTop;
 
     // Swiper Review initialization
     var swiper = new Swiper('.swiper-reviews', {
@@ -247,21 +227,26 @@ $(function () {
         var $container = $(this).parent('.nd-contact-form');
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
+        var email = $container.find('input[id$="__email"]').val();
         var theme = $(this).attr('data-theme');
         if (name) {
             $('input[id$="__name"]').val(name);
         }
+        if (email) {
+            $('input[id$="__email"]').val(email);
+        }
         if (phone) {
             $('input[id$="__phone"]').val(phone);
-            submitForm(theme || 'Заявка на обратный звонок', name, phone);
+            submitForm(theme || 'Заявка на обратный звонок', name, phone, email);
         }
 
-        function submitForm(theme, name, phone) {
-            storeToLocalstorage(name, phone);
+        function submitForm(theme, name, phone, email) {
+            storeToLocalstorage(name, phone, email);
             $.post("/backend/submit.php", {
                 theme: theme,
                 name: name,
-                phone: phone
+                phone: phone,
+                email: email
             }).done(function (data) {
                 if (data == "OK") {
                     iziForms.forEach(function (iziForm) {
@@ -272,7 +257,8 @@ $(function () {
                     yaHit('/success.html');
                     fbq('track', 'success', {
                         name: name,
-                        phone: phone
+                        phone: phone,
+                        email: email
                     });
                 }
             });
@@ -294,6 +280,31 @@ $(function () {
             .removeClass('nd-video')
             .addClass('nd-video__embedded');
         $(window).trigger('resize');
+    });
+
+    // Portfolio
+    $("img").unveil(1000);
+    lightbox.option({
+        resizeDuration: 200,
+        wrapAround: true,
+        albumLabel: "Работа %1 из %2"
+    });
+    $(document).on('click', '.nd-tab__header__title', function () {
+        var $toggler = $(this);
+        var targetId = $toggler.attr('data-target');
+        $('.nd-tab__header__title').removeClass('nd-tab__header__title--active');
+        $toggler.addClass('nd-tab__header__title--active');
+        $('.nd-tab__content__container').removeClass('nd-tab__content__container--active');
+        $('#' + targetId)
+            .addClass('nd-tab__content__container--active')
+            .find('img:not(.hidden)')
+            .trigger('unveil');
+    });
+    $(document).on('click', '.nd-slider__show-more__text', function () {
+        var $container = $(this).closest('.nd-tab__content__container');
+        $container.find('.hidden').removeClass('hidden');
+        $container.find('img').trigger('unveil');
+        $(this).remove();
     });
 
     // Scrollup button
