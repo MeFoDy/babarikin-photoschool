@@ -3,7 +3,7 @@ date_default_timezone_set('Etc/UTC');
 
 require 'lib/PHPMailerAutoload.php';
 
-function sendMail($email) {
+function sendMail($email, $name) {
   $theme = 'Подписка на бесплатную рассылку для фотографов';
 
   $mail = new PHPMailer;
@@ -18,6 +18,7 @@ function sendMail($email) {
 <p><strong>Данные лида:</strong></p>
 
 <p>
+<strong>Имя:</strong> {$name} <br>
 <strong>Электронный адрес:</strong> {$email} <br>
 
 <strong>Дополнительные значения:</strong><br>
@@ -32,6 +33,7 @@ EOT;
 }
 
 $email = isset($_POST['email']) ? $_POST['email'] : '';
+$name = isset($_POST['name']) ? $_POST['name'] : '-';
 
 if ($email !== '') {
   // Ключ доступа к API (из Личного Кабинета)
@@ -78,5 +80,5 @@ if ($email !== '') {
     echo "API access error";
   }
 
-  sendMail($email);
+  sendMail($email, $name);
 }

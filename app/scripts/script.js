@@ -203,12 +203,14 @@ $(function () {
     });
 
     $(document).on('click', '.gift__btn', function (event) {
-        var $container = $(this).parent('.nd-contact-form');
+        var $container = $(this).closest('.nd-contact-form');
         var email = $container.find('input[id$="__email"]').val();
+        var name = $container.find('input[id$="__name"]').val();
         if (email) {
             $('#nd-gift-form').iziModal('close');
-            storeToLocalstorage(null, null, email);
+            storeToLocalstorage(name, null, email);
             $.post("/backend/subscribe.php", {
+                name: name,
                 email: email
             }).done(function (data) {
                 // do nothing
@@ -224,7 +226,7 @@ $(function () {
         if ($(this).hasClass('gift__btn')) {
             return;
         }
-        var $container = $(this).parent('.nd-contact-form');
+        var $container = $(this).closest('.nd-contact-form');
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
         var email = $container.find('input[id$="__email"]').val();
