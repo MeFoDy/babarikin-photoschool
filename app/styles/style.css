@@ -1308,6 +1308,7 @@
       clear: both;
       height: 0; }
     .nd-slider__photos__photo {
+      background-color: #2b2b2b;
       border: 0 solid #2b2b2b;
       box-sizing: border-box;
       display: block;

@@ -44,6 +44,7 @@
         }
 
         &__photo {
+            background-color: $color--dark-bg;
             border: 0 solid $color--dark-bg;
             box-sizing: border-box;
             display: block;
