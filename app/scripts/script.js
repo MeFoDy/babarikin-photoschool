@@ -1,6 +1,18 @@
 $(function () {
     // Load user settings
     $('.nd-gift-percent').text(window.statSettings.discount);
+
+    $('.nd-price-discount-hours-count').text(window.statSettings.courseHoursLightroom);
+
+    $('.nd-services-hours').text(window.statSettings.hoursCount);
+    $('.nd-services-hours-text').text(getNumEnding(window.statSettings.hoursCount, ["час", "часа", "часов"]));
+
+    $('.nd-gift-lessons-count').text(window.statSettings.lessonsCount);
+    $('.nd-gift-lessons-count-text').text(getNumEnding(window.statSettings.lessonsCount, ["урок", "урока", "уроков"]));
+
+    $('.nd-price-discount-lessons-count').text(window.statSettings.lessonsCountLightroom);
+    $('.nd-price-discount-lessons-count-text').text(getNumEnding(window.statSettings.lessonsCountLightroom, ["занятия", "занятий", "занятий"]));
+
     var prices = [{
         selector: '.nd-gift-price-new',
         value: window.statSettings.newPrice

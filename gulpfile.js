@@ -45,7 +45,12 @@ gulp.task('copy:backend', function() {
         .pipe(gulp.dest('dist/backend'));
 });
 
-gulp.task('copy:images', function() {
+gulp.task('copy:lightbox', function () {
+    return gulp.src('app/images/*.+(png|gif)')
+        .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('copy:images', ['copy:lightbox'], function() {
     return gulp.src('app/images/+(png|jpg|svg)/**/*')
         .pipe(gulp.dest('dist/images'));
 });
