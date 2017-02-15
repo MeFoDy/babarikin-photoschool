@@ -154,6 +154,7 @@ $(function () {
         "#nd-success-gift-form, " +
         "#nd-menu-form, " +
         "#nd-gift-form, " +
+        "#nd-approve-subscribe-form, " +
         "#nd-course-standart").iziModal(baseModalSettings);
     var iziForms = [{
         trigger: '.nd-terms__trigger',
@@ -224,8 +225,11 @@ $(function () {
             $.post("/backend/subscribe.php", {
                 name: name,
                 email: email
-            }).done(function (data) {
-                // do nothing
+            }).always(function (data) {
+                iziForms.forEach(function (iziForm) {
+                    $(iziForm.target).iziModal('close');
+                });
+                $('#nd-approve-subscribe-form').iziModal('open');
             });
         }
     });
