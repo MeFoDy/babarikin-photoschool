@@ -1,5 +1,6 @@
 .nd-services {
     padding: 80px 0 0 0;
+    background: $color--grey;
 
     &__bg-item {
         @include ease-transition;
@@ -70,5 +71,9 @@
     &__travelling {
         background: url("../images/jpg/course-travelling.jpg") no-repeat center center;
         background-size: cover;
+    }
+
+    &__grid {
+        margin-top: 60px;
     }
 }

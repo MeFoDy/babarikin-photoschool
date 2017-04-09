@@ -1,6 +1,53 @@
 .nd-advantages {
     background-color: $color--light;
-    padding: 80px 0 40px 0;
-    max-width: 1140px;
-    margin: auto;
+
+    &__container {
+        padding: 80px 0 40px 0;
+        max-width: 1140px;
+        margin: auto;
+    }
+
+    &-header {
+        background-image: url('../images/jpg/advantages.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0 -10px;
+        text-align: center;
+
+        &__title {
+            color: $color--primary;
+            font-size: 3.6rem;
+            font-weight: bold;
+            margin: 0;
+            padding-top: 22rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+        }
+
+        &__description {
+            font-size: 2.8rem;
+            color: $color--light;
+            line-height: 1.64;
+        }
+
+        &__subheader {
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            display: block;
+            color: $color--light;
+            margin-top: 11rem;
+        }
+
+        &__scroll {
+            margin: 2rem 0 1rem;
+            $scroll-button-height: 50px;
+            @include ease-transition;
+            fill: transparent;
+            stroke: $color--primary;
+            stroke-width: 2px;
+            font-size: 3rem;
+            height: $scroll-button-height;
+            width: $scroll-button-height;
+        }
+    }
 }

@@ -11,35 +11,25 @@
 
     &__header {
         color: $color--primary;
-        font-size: 3.8rem;
+        font-size: 3.6rem;
         margin: 0 auto 20px;
         padding: 0 0 20px;
         position: relative;
         text-align: center;
+        text-transform: uppercase;
+        font-weight: normal;
 
         @include respond-to(phones) {
             font-size: 2.4rem;
             padding: 0 0 20px 0;
         }
-
-        &::after {
-            border-bottom: 2px solid $color--primary;
-            bottom: -1px;
-            content: '';
-            display: block;
-            height: 1px;
-            left: calc(50% - #{$block-header-bottom-line-width / 2});
-            position: absolute;
-            width: $block-header-bottom-line-width;
-        }
     }
 
     &__subheader {
-        font-size: 2.1rem;
+        font-size: 2rem;
         margin: 0 auto 40px;
         max-width: 760px;
         text-align: center;
-        padding-top: 6px;
         line-height: 1.5;
 
         @include respond-to(phones) {

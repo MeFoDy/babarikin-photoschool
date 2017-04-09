@@ -69,51 +69,9 @@ $(function () {
         }
     });
 
-    // Spincrement
-    var hasBeenIncrementShowed = false;
-    var counters = [{
-        selector: ".nd-trust-count-years",
-        to: window.statSettings.trustYears || 10,
-        textSelector: ".nd-trust-count-years-text",
-        textVariants: ["год", "года", "лет"]
-    }, {
-        selector: ".nd-trust-count-companies",
-        to: window.statSettings.trustCompanies || 50,
-        textSelector: ".nd-trust-count-companies-text",
-        textVariants: ["компания", "компании", "компаний"]
-    }, {
-        selector: ".nd-trust-count-percent",
-        to: window.statSettings.trustPercent || 100,
-        textSelector: ".nd-trust-count-percent-text",
-        textVariants: ["процент", "процента", "процентов"]
-    }, {
-        selector: ".nd-trust-count-students",
-        to: window.statSettings.trustCount || 1579,
-        textSelector: ".nd-trust-count-students-text",
-        textVariants: ["человек", "человека", "человек"]
-    }];
-    $(window).on("scroll load resize", function () {
-        if (hasBeenIncrementShowed) {
-            return false;
-        }
-        var countbox = $(".nd-trust");
-        var windowTop = $(window).scrollTop();
-        var elementTop = $(countbox).offset().top;
-        var windowHeight = $(window).height();
-        if (windowTop + windowHeight >= elementTop) {
-            counters.forEach(function (counter) {
-                $(counter.selector)
-                    .spincrement({
-                        thousandSeparator: "",
-                        duration: 2000,
-                        to: counter.to
-                    })
-                    .addClass('nd-trust__list__item__number--active');
-                $(counter.textSelector)
-                    .text(getNumEnding(counter.to, counter.textVariants));
-            });
-            hasBeenIncrementShowed = true;
-        }
+    $('.nd-reviews__author').click(function () {
+        $('.nd-reviews__author').removeClass("active");
+        $(this).addClass("active");
     });
 
     // Swiper Portfolio initialization
@@ -134,20 +92,6 @@ $(function () {
     });
     galleryTop.params.control = galleryThumbs;
     galleryThumbs.params.control = galleryTop;
-
-    // Swiper Review initialization
-    var swiper = new Swiper('.swiper-reviews', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next-review',
-        prevButton: '.swiper-button-prev-review',
-        spaceBetween: 30,
-        loop: true,
-        autoHeight: true,
-        slidesPerView: 1,
-        centeredSlides: true,
-        grabCursor: true
-    });
 
     // Init popups
     var openedPopups = [];
