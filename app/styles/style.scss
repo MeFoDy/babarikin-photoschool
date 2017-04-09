@@ -11,8 +11,8 @@
 @import "blocks/popup";
 @import "blocks/scrollup";
 
+@import "blocks/nd-about";
 @import "blocks/nd-advantages";
-@import "blocks/nd-age-block";
 @import "blocks/nd-contact";
 @import "blocks/nd-course-standart";
 @import "blocks/nd-flex-composite-grid";
@@ -22,6 +22,7 @@
 @import "blocks/nd-header";
 @import "blocks/nd-menu-form";
 @import "blocks/nd-more";
+@import "blocks/nd-press";
 @import "blocks/nd-price";
 @import "blocks/nd-questions";
 @import "blocks/nd-reviews";
@@ -47,7 +48,7 @@ html {
 body {
     background-color: $color--body-bg;
     color: $color--dark;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     overflow-x: hidden;
 }
 
@@ -77,4 +78,8 @@ body {
             margin: 20px 10px;
         }
     }
+}
+
+.text-center {
+    text-align: center;
 }

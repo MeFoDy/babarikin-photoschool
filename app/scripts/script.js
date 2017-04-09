@@ -325,7 +325,7 @@ $(function () {
                 'max-height': height
             })
             .html(
-                '<iframe width="640" height="360" ' +
+                '<iframe width="640" height="445" ' +
                 'src="https://www.youtube.com/embed/videoseries?list=PLJJ6y-ag9R6GIoPlpR1tqCu_leyD4APk8&autoplay=1" ' +
                 'frameborder="0" allowfullscreen></iframe>'
             )
