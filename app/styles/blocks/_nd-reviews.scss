@@ -58,4 +58,70 @@
             border-radius: 50%;
         }
     }
+
+    &__container {
+        margin-top: 70px;
+        text-align: center;
+    }
+}
+
+.nd-review {
+    &__body {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+
+    &__title {
+        text-decoration: none;
+        font-size: 3.2rem;
+        color: $color--primary;
+        font-weight: normal;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    &__subtitle {
+        font-size: 2rem;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        padding: 10px 0;
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1.333;
+    }
+
+    &__main-text {
+        padding-top: 40px;
+        padding-bottom: 10px;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+        line-height: 1.333;
+    }
+
+    &__portfolio {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: 85px auto;
+    }
+
+    &__portfolio-item {
+        max-width: 260px;
+        margin: 15px;
+        max-height: 240px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 240px;
+        }
+    }
 }

@@ -1,4 +1,11 @@
 $(function () {
+    // Lightbox options
+    lightbox.option({
+        albumLabel: "Фото %1 из %2",
+        wrapAround: true,
+        disableScrolling: true
+    });
+
     // Load user settings
     $('.nd-price__discount__description-count').text(window.statSettings.hasPlacesCount);
     $('.nd-price__discount__description-text')
@@ -72,6 +79,16 @@ $(function () {
     $('.nd-reviews__author').click(function () {
         $('.nd-reviews__author').removeClass("active");
         $(this).addClass("active");
+        var index = $(this).index();
+        var $active = $($('.nd-review__body').get(index));
+        $('.nd-review__body.active').animate({ opacity: 0 }, 200, function () {
+            $('.nd-review__body').removeClass("active").removeAttr("style");
+            $active
+                .css({ opacity: 0, display: "block" })
+                .animate({ opacity: 1 }, 200, function () {
+                    $active.addClass("active");
+                });
+        });
     });
 
     // Swiper Portfolio initialization

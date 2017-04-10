@@ -1015,6 +1015,58 @@
       width: 160px;
       height: 160px;
       border-radius: 50%; }
+  .nd-reviews__container {
+    margin-top: 70px;
+    text-align: center; }
+
+.nd-review__body {
+  display: none; }
+  .nd-review__body.active {
+    display: block; }
+
+.nd-review__title {
+  text-decoration: none;
+  font-size: 3.2rem;
+  color: #48d9b3;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: inline-block; }
+
+.nd-review__subtitle {
+  font-size: 2rem;
+  text-transform: uppercase; }
+
+.nd-review__text {
+  padding: 10px 0;
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.333; }
+
+.nd-review__main-text {
+  padding-top: 40px;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.333; }
+
+.nd-review__portfolio {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 85px auto; }
+
+.nd-review__portfolio-item {
+  max-width: 260px;
+  margin: 15px;
+  max-height: 240px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .nd-review__portfolio-item img {
+    height: 240px; }
 
 .nd-services {
   padding: 80px 0 0 0;
