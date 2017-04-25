@@ -7,21 +7,25 @@ $(function () {
     });
 
     // Load user settings
-    $('.nd-price__discount__description-count').text(window.statSettings.hasPlacesCount);
-    $('.nd-price__discount__description-text')
-        .text(getNumEnding(window.statSettings.hasPlacesCount, ["место", "места", "мест"]));
+    // 159&nbsp;рублей
+    var ws = window.statSettings;
+    var rubleForms = ["рубль", "рубля", "рублей"];
+    $('.price__intensive-new').html(ws.intensivePrice + "&nbsp;" + getNumEnding(ws.intensivePrice, rubleForms));
+    $('.price__intensive-old').html(ws.intensiveOldPrice + "&nbsp;" + getNumEnding(ws.intensiveOldPrice, rubleForms));
+    $('.price__intensive-economy').html(ws.intensiveEconomy);
+    $('.price__intensive-date').html(ws.intensiveEndDate);
 
-    $('.nd-price-percent').text(window.statSettings.discount);
+    $('.price__base-new').html(ws.basePrice + "&nbsp;" + getNumEnding(ws.basePrice, rubleForms));
+    $('.price__base-old').html(ws.baseOldPrice + "&nbsp;" + getNumEnding(ws.baseOldPrice, rubleForms));
+    $('.price__base-economy').html(ws.baseEconomy);
+    $('.price__base-date').html(ws.baseEndDate);
 
-    $('.nd-price__discount__date').text(window.statSettings.finalDate);
+    $('.price__standart-new').html(ws.standartPrice + "&nbsp;" + getNumEnding(ws.standartPrice, rubleForms));
+    $('.price__standart-old').html(ws.standartOldPrice + "&nbsp;" + getNumEnding(ws.standartOldPrice, rubleForms));
+    $('.price__standart-economy').html(ws.standartEconomy);
+    $('.price__standart-date').html(ws.standartEndDate);
 
-    $('.nd-price-price-new').text(window.statSettings.newPrice);
-    $('.nd-price-price-new-text')
-        .text(getNumEnding(window.statSettings.newPrice, ["рубль", "рубля", "рублей"]));
-
-    $('.nd-price-price-old').text(window.statSettings.oldPrice);
-    $('.nd-price-price-old-text')
-        .text(getNumEnding(window.statSettings.oldPrice, ["рубль", "рубля", "рублей"]));
+    $('.price__premium-new').html(ws.premiumPrice + "&nbsp;" + getNumEnding(ws.premiumPrice, rubleForms));
 
     //Fixed navigation
     var $menu = $(".nd-header");
@@ -81,11 +85,18 @@ $(function () {
         $(this).addClass("active");
         var index = $(this).index();
         var $active = $($('.nd-review__body').get(index));
-        $('.nd-review__body.active').animate({ opacity: 0 }, 200, function () {
+        $('.nd-review__body.active').animate({
+            opacity: 0
+        }, 200, function () {
             $('.nd-review__body').removeClass("active").removeAttr("style");
             $active
-                .css({ opacity: 0, display: "block" })
-                .animate({ opacity: 1 }, 200, function () {
+                .css({
+                    opacity: 0,
+                    display: "block"
+                })
+                .animate({
+                    opacity: 1
+                }, 200, function () {
                     $active.addClass("active");
                 });
         });
@@ -95,7 +106,8 @@ $(function () {
     var galleryTop = new Swiper('.gallery-top', {
         autoplay: 4000,
         spaceBetween: 10,
-        grabCursor: true
+        grabCursor: true,
+        autoplayDisableOnInteraction: false
     });
     var galleryThumbs = new Swiper('.gallery-thumbs', {
         spaceBetween: 0,
@@ -104,11 +116,32 @@ $(function () {
         touchRatio: 0.2,
         slideToClickedSlide: true,
         grabCursor: true,
+        autoplayDisableOnInteraction: false,
         nextButton: '.swiper-button-next-thumbs',
         prevButton: '.swiper-button-prev-thumbs'
     });
     galleryTop.params.control = galleryThumbs;
     galleryThumbs.params.control = galleryTop;
+
+    // Swiper Employees initialization
+    var employeesSwiper = new Swiper('.nd-team__swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        grabCursor: true,
+        loop: true,
+        nextButton: '.nd-team__next',
+        prevButton: '.nd-team__prev',
+        breakpoints: {
+            480: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            },
+            760: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            }
+        }
+    });
 
     // Init popups
     var openedPopups = [];
@@ -155,19 +188,23 @@ $(function () {
     $("#nd-more").iziModal($.extend({}, baseModalSettings, {
         width: '900px'
     }));
-    $("#nd-free-gift-form, " +
-        "#nd-courses-form, " +
-        "#nd-call-form, " +
-        "#nd-success-gift-form, " +
-        "#nd-menu-form, " +
-        "#nd-gift-form, " +
-        "#nd-course-standart").iziModal(baseModalSettings);
+    $(["#nd-free-gift-form",
+        "#nd-courses-form",
+        "#nd-price-courses-form",
+        "#nd-call-form",
+        "#nd-success-gift-form",
+        "#nd-menu-form",
+        "#nd-gift-form",
+        "#nd-course-standart"
+    ].join(", ")).iziModal(baseModalSettings);
     var iziForms = [{
         trigger: '.nd-terms__trigger',
         target: '#nd-terms'
     }, {
         trigger: '.nd-courses-form__trigger',
         target: '#nd-courses-form'
+    }, {
+        target: '#nd-price-courses-form'
     }, {
         trigger: '.nd-call-form__trigger',
         target: '#nd-call-form'
@@ -196,6 +233,16 @@ $(function () {
         }
     });
 
+    // Courses table buttons
+    $(document).on('click', '.nd-price__btn', function () {
+        var $button = $(this);
+        var courseName = $button.attr("data-course");
+        var $form = $("#nd-price-courses-form");
+        $form.find('.nd-price-course-name').text(courseName);
+        $form.find('button.nd-submit').attr("data-theme", "Заявка на " + courseName);
+        $form.iziModal("open");
+    });
+
     // Auto open free gift popup after delay
     (function openGiftFormAfterDelay(delay) {
         setTimeout(function () {
@@ -221,13 +268,33 @@ $(function () {
         $('#nd-gift-form').iziModal('open');
     });
 
+    $(document).on('click', '.shots__btn', function (event) {
+        var $button = $(this);
+        var $container = $button.parent('.nd-contact-form');
+        var name = $container.find('input[id$="__name"]').val();
+        if (name) {
+            $('input[id$="__name"]').val(name);
+        }
+        var email = $container.find('input[id$="__email"]').val();
+        if (email) {
+            $button.attr('disabled', 'disabled');
+            storeToLocalstorage(name, null, email);
+            $.post("./backend/subscribeShots.php", {
+                email: email,
+                name: name
+            }).done(function (data) {
+                $button.removeAttr('disabled');
+            });
+        }
+    });
+
     $(document).on('click', '.gift__btn', function (event) {
         var $container = $(this).parent('.nd-contact-form');
         var email = $container.find('input[id$="__email"]').val();
         if (email) {
             $('#nd-gift-form').iziModal('close');
             storeToLocalstorage(null, null, email);
-            $.post("/backend/subscribe.php", {
+            $.post("./backend/subscribe.php", {
                 email: email
             }).done(function (data) {
                 // do nothing
@@ -240,13 +307,14 @@ $(function () {
 
     // Submit button handler
     $(document).on('click', '.nd-submit', function (event) {
-        if ($(this).hasClass('gift__btn')) {
+        if ($(this).hasClass('gift__btn') || $(this).hasClass('shots__btn')) {
             return;
         }
-        var $container = $(this).parent('.nd-contact-form');
+        var $button = $(this);
+        var $container = $button.parent('.nd-contact-form');
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
-        var theme = $(this).attr('data-theme');
+        var theme = $button.attr('data-theme');
         if (name) {
             $('input[id$="__name"]').val(name);
         }
@@ -256,12 +324,14 @@ $(function () {
         }
 
         function submitForm(theme, name, phone) {
+            $button.attr('disabled', 'disabled');
             storeToLocalstorage(name, phone);
-            $.post("/backend/submit.php", {
+            $.post("./backend/submit.php", {
                 theme: theme,
                 name: name,
                 phone: phone
             }).done(function (data) {
+                $button.removeAttr('disabled');
                 if (data == "OK") {
                     iziForms.forEach(function (iziForm) {
                         $(iziForm.target).iziModal('close');

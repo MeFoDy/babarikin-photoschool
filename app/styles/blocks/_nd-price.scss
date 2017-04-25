@@ -1,109 +1,186 @@
 .nd-price {
-    background: url("../images/jpg/price.jpg") no-repeat center center;
-    background-size: cover;
-    padding-bottom: 80px;
+    $column-width: 195px;
+    $title-column-width: 390px;
+
+    background-color: $color--grey;
+    padding-bottom: 100px;
     padding-top: 80px;
 
     &__container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
         margin: 0 auto;
         max-width: 1140px;
+        overflow-x: auto;
     }
 
-    &__discount {
-        flex: 8 66%;
+    &__hit::before {
+        content: 'Хит';
+        color: $color--primary;
+        font-size: 1.4rem;
+        display: block;
+        position: absolute;
+        top: 4.5rem;
+        left: 0;
+        width: $column-width;
+        text-align: center;
+    }
 
-        @include respond-to(phones) {
-            flex: 1 100%;
-            padding-bottom: 50px;
+    &__table {
+        font-size: 1.4rem;
+        line-height: 2.6rem;
+        margin-top: 100px;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        td,
+        th {
+            border: none;
+            padding: 15px 10px;
+            box-sizing: border-box;
+            max-width: $column-width;
+            width: $column-width;
+            vertical-align: top;
+            text-align: center;
         }
 
-
-        &__header {
-            color: $color--light;
-            font-size: 4.8rem;
-            text-transform: uppercase;
-
-            @include respond-to(phones) {
-                font-size: 3rem;
+        td,
+        th {
+             &:nth-child(1) {
+                max-width: $title-column-width;
+                width: $title-column-width;
+                padding-right: 110px;
+                padding-left: 0;
+                text-transform: uppercase;
+                text-align: right;
             }
         }
 
-        &__subheader {
-            color: $color--light;
-            font-size: 3rem;
-            line-height: 1.5;
-            margin: 30px 0;
-            //text-transform: uppercase;
-
-            &__important {
-                color: $color--primary;
-            }
-
-            @include respond-to(phones) {
-                font-size: 2.4rem;
+        td,
+        th {
+             &:nth-child(4) {
+                background-color: $color--light;
             }
         }
 
-        &__is {
-            color: $color--primary;
-            display: inline-block;
-            font-size: 2.8rem;
-            margin-right: 30px;
-            text-transform: uppercase;
-
-            .number {
-                font-size: 6.4rem;
-            }
-        }
-
-        &__was {
-            color: $color--light;
-            display: inline-block;
-            font-size: 2.4rem;
+        th {
+            padding-top: 80px;
+            padding-bottom: 40px;
             position: relative;
-            text-transform: uppercase;
-
-            .number {
-                font-size: 4.8rem;
-            }
-
-            &::after {
-                border-bottom: 3px solid $color--primary;
-                bottom: 2.1rem;
-                content: "";
-                left: 0;
-                margin-left: -5px;
-                position: absolute;
-                width: calc(100% + 10px);
-            }
         }
 
-        &__description {
-            color: $color--light-dark;
-            font-size: 2.4rem;
-            margin-top: 30px;
-        }
-
-        &__link {
-            font-size: 2rem;
-            margin-top: 30px;
-
-            a {
-                border-bottom: 1px dashed $color--light-dark;
-                color: $color--light-dark;
-                text-decoration: none;
-            }
+        tr:hover td {
+            background-color: $color--light;
         }
     }
 
-    &__form {
-        flex: 4 33%;
+    &__table-header {
+        font-size: 1.8rem;
+        text-transform: uppercase;
+    }
 
-        @include respond-to(phones) {
-            flex: 1 100%;
+    &__fail-icon {
+        display: inline-block;
+        width: 1.4rem;
+        height: 1.4rem;
+        background-image: url('../images/png/fail.png');
+        background-image: url('../images/svg/fail.svg');
+        background-size: 1.4rem;
+    }
+
+    &__success-icon {
+        display: inline-block;
+        width: 2rem;
+        height: 1.4rem;
+        background-image: url('../images/png/success.png');
+        background-image: url('../images/svg/success.svg');
+        background-size: 2rem 1.4rem;
+    }
+
+    &__time-icon {
+        display: inline-block;
+        width: 1.4rem;
+        height: 1.4rem;
+        background-image: url('../images/png/clock.png');
+        background-image: url('../images/svg/clock.svg');
+        background-size: 1.4rem;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    &__success-text {
+        text-transform: uppercase;
+        color: $color--primary;
+        font-size: 1.8rem;
+    }
+
+    &__weeks {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &__hours {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__description {
+        font-size: 1.6rem;
+        line-height: 1.25;
+    }
+
+    &__price-row {
+        td:nth-child(1) {
+            color: $color--primary;
+        }
+    }
+
+    &__new-price {
+        font-size: 1.8rem;
+        font-variant: small-caps;
+        color: $color--primary;
+    }
+
+    &__old-price {
+        font-size: 2.2rem;
+        font-variant: small-caps;
+        margin-top: 10px;
+        position: relative;
+        display: inline-block;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            left: -5%;
+            top: 55%;
+            display: block;
+            height: 2px;
+            background-color: $color--primary;
+        }
+    }
+
+    &__economy {
+        font-size: 1.5rem;
+        color: #949494;
+        text-transform: uppercase;
+        margin-top: 20px;
+    }
+
+    &__discount-until {
+        font-size: 1.6rem;
+        line-height: 2rem;
+        text-transform: uppercase;
+        margin-top: 20px;
+        vertical-align: middle;
+    }
+
+    &__btn {
+        height: 4rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 1.3rem;
+        &:active {
+            padding-top: 1.2rem;
         }
     }
 }

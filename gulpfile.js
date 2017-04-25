@@ -45,6 +45,11 @@ gulp.task('copy:backend', function() {
         .pipe(gulp.dest('dist/backend'));
 });
 
+gulp.task('copy:lightbox:images', function() {
+    return gulp.src('node_modules/lightbox2/dist/images/**/*')
+        .pipe(gulp.dest('dist/images'));
+});
+
 gulp.task('copy:images', function() {
     return gulp.src('app/images/+(png|jpg|svg)/**/*')
         .pipe(gulp.dest('dist/images'));
@@ -63,7 +68,7 @@ gulp.task('build:sass', function() {
 });
 
 gulp.task('build', function() {
-    runSequence('clean:dist', 'build:sass', ['useref', 'copy:fonts', 'copy:images', 'copy:js', 'copy:backend'], function() {
+    runSequence('clean:dist', 'build:sass', ['useref', 'copy:fonts', 'copy:lightbox:images', 'copy:images', 'copy:js', 'copy:backend'], function() {
         gutil.log(gutil.colors.green('✔ ') + 'Build has been completed');
     });
 });

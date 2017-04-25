@@ -1,16 +1,27 @@
 window.statSettings = {
 
-	hasPlacesCount: 5, // количество свободных мест
+	// Интенсив
+	intensivePrice: 159, // новая цена
+	intensiveOldPrice: 289, // старая цена
+	intensiveEndDate: '31 апреля', // дата конца скидки
 
-	/*     Блок "Нам стоит доверять"     */
-	trustYears: 15, // опыт съемки у преподавателя
-	trustCompanies: 95, // компаний отправили сотрудников на обучение
-	trustPercent: 100, // процентов результат
-	trustCount: 3037, // прошли обучение
+	// Базовый курс
+	basePrice: 199, // новая цена
+	baseOldPrice: 300, // старая цена
+	baseEndDate: '30 марта', // дата конца скидки
 
-	oldPrice: 289, // старая цена
-	newPrice: 159, // новая цена
-	finalDate: '31 марта' // дата конца скидки
+	// Стандартный курс
+	standartPrice: 299, // новая цена
+	standartOldPrice: 400, // старая цена
+	standartEndDate: '15 апреля', // дата конца скидки
 
+	// Премиум-курс
+	premiumPrice: 470 // цена
 };
-window.statSettings.discount = ((window.statSettings.oldPrice - window.statSettings.newPrice) * 100 / window.statSettings.oldPrice).toFixed(0);
+
+(function () {
+	var s = window.statSettings;
+	s.intensiveEconomy = s.intensiveOldPrice - s.intensivePrice;
+	s.baseEconomy = s.baseOldPrice - s.basePrice;
+	s.standartEconomy = s.standartOldPrice - s.standartPrice;
+})();
