@@ -13,12 +13,26 @@
 
     &__logos {
         display: block;
+
+        @include respond-to(tablets-phones) {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     &__text {
         font-size: 2.4rem;
         width: 200px;
         color: $color--dark;
+
+        @include respond-to(tablets-phones) {
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+        }
     }
 
     &__link {
@@ -34,6 +48,14 @@
             &:hover {
                 filter: grayscale(0);
                 opacity: 1;
+            }
+
+            @include respond-to(tablets-phones) {
+                margin-top: 20px;
+            }
+
+            @include respond-to(phones) {
+                height: 25px;
             }
         }
     }

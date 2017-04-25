@@ -4,6 +4,7 @@
     &__block {
         display: flex;
         width: 100%;
+        flex-wrap: wrap;
     }
 
     &__container {
@@ -24,6 +25,11 @@
         margin: 14rem 0 0 0;
         list-style: none;
         padding: 0 0 0 17%;
+
+        @include respond-to(phones) {
+            padding: 0 5px;
+            margin: 0;
+        }
 
         &-item {
             display: block;
@@ -98,6 +104,11 @@
     &__column {
         width: 50%;
         padding: 75px 15px;
+
+        @include respond-to(phones) {
+            width: 100%;
+            padding-top: 0;
+        }
     }
 
     &__header {
@@ -107,11 +118,19 @@
         font-weight: normal;
         margin-top: 60px;
         margin-bottom: 40px;
+
+        @include respond-to(phones) {
+            font-size: 2.4rem;
+        }
     }
 
     &__text {
         line-height: 1.5;
         font-size: 2rem;
+
+        @include respond-to(phones) {
+            font-size: 1.8rem;
+        }
     }
 
     &__media {
@@ -120,6 +139,21 @@
 
     &__media-column {
         position: relative;
+
+        @include respond-to(phones) {
+            width: 100vw;
+            padding-left: 0;
+            padding-right: 0;
+            margin: 0 -10px;
+            order: 1;
+            padding-bottom: 20px;
+        }
+    }
+
+    &__text-column {
+        @include respond-to(phones) {
+            order: 2;
+        }
     }
 
     &__media-title {
@@ -136,6 +170,12 @@
         padding-left: 3rem;
         text-transform: uppercase;
         font-size: 1.8rem;
+
+        @include respond-to(phones) {
+            left: 0;
+            top: auto;
+            bottom: 0;
+        }
     }
 
     &--text-left {
@@ -143,10 +183,19 @@
             left: -40%;
             right: auto;
             text-align: left;
+
+            @include respond-to(phones) {
+                left: auto;
+                right: 0;
+            }
         }
 
         .nd-about__list {
             padding: 0 17% 0 0;
+
+            @include respond-to(phones) {
+                padding: 0;
+            }
         }
     }
 }

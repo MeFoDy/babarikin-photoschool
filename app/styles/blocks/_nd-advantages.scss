@@ -18,16 +18,26 @@
             color: $color--primary;
             font-size: 3.6rem;
             font-weight: bold;
+            line-height: 1.5;
             margin: 0;
             padding-top: 22rem;
             padding-bottom: 5rem;
             text-transform: uppercase;
+
+            @include respond-to(phones) {
+                padding-top: 10rem;
+                font-size: 2.4rem;
+            }
         }
 
         &__description {
             font-size: 2.8rem;
             color: $color--light;
             line-height: 1.64;
+
+            @include respond-to(phones) {
+                font-size: 1.8rem;
+            }
         }
 
         &__subheader {
@@ -36,6 +46,10 @@
             display: block;
             color: $color--light;
             margin-top: 11rem;
+
+            @include respond-to(phones) {
+                font-size: 1.4rem;
+            }
         }
 
         &__scroll {
