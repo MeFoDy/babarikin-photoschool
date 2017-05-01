@@ -11,6 +11,7 @@
         background-image: url('../images/jpg/advantages.jpg');
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
         margin: 0 -10px;
         text-align: center;
 
@@ -34,9 +35,14 @@
             font-size: 2.8rem;
             color: $color--light;
             line-height: 1.64;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
 
             @include respond-to(phones) {
                 font-size: 1.8rem;
+                padding-left: 10px;
+                padding-right: 10px;
             }
         }
 

@@ -1,6 +1,7 @@
 .nd-price {
     $column-width: 195px;
     $title-column-width: 390px;
+    $title-column-width-small: 250px;
 
     background-color: $color--grey;
     padding-bottom: 100px;
@@ -31,12 +32,12 @@
     &__table {
         font-size: 1.4rem;
         line-height: 2.6rem;
-        margin-top: 100px;
+        margin-top: 10px;
         border-collapse: collapse;
         border-spacing: 0;
 
         @include respond-to(phones) {
-            margin: 60px 15px 0;
+            margin: 60px 10px 0;
             font-size: 1.2rem;
         }
 
@@ -60,6 +61,16 @@
                 padding-left: 0;
                 text-transform: uppercase;
                 text-align: right;
+                left: 0;
+                position: absolute;
+                top: auto;
+
+                @include respond-to(phones) {
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    max-width: $title-column-width-small;
+                    width: $title-column-width-small;
+                }
             }
         }
 
@@ -84,6 +95,26 @@
     &__table-header {
         font-size: 1.8rem;
         text-transform: uppercase;
+    }
+
+    &__table-wrapper {
+        position: relative;
+    }
+
+    &__long-row {
+        height: 6em;
+    }
+
+    &__table-scroller {
+        margin-left: $title-column-width;
+        overflow-x: scroll;
+        overflow-y: visible;
+        width: calc(100% - $title-column-width);
+
+        @include respond-to(phones) {
+            margin-left: $title-column-width-small;
+            width: calc(100% - $title-column-width-small);
+        }
     }
 
     &__fail-icon {

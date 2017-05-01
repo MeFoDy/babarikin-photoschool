@@ -15,6 +15,12 @@
     width: $scrollup-button-height;
     z-index: 999;
 
+    @include respond-to(phones) {
+        right: auto;
+        left: 10px;
+        bottom: 10px;
+    }
+
     &:hover {
         fill: $color--light-little-transparent;
         stroke: $color--primary;

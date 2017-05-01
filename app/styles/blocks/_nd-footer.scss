@@ -18,7 +18,7 @@
 
     &__rights {
         text-align: left;
-        width: 250px;
+        width: 300px;
 
         @include respond-to(phones) {
             flex: 1 100%;
@@ -57,7 +57,7 @@
 
     &__studio {
         text-align: right;
-        width: 250px;
+        width: 300px;
 
         @include respond-to(phones) {
             flex: 1 100%;

@@ -48,7 +48,7 @@
   display: inline-block;
   line-height: 1em;
   height: 3.75em;
-  padding: 1.3em 2.5em;
+  padding: 1em 2.5em;
   padding: calc(1em - 2px) 2.5em;
   border-radius: 1.9em;
   text-transform: uppercase;
@@ -62,7 +62,7 @@
     color: #fff;
     background-color: #2cd2a6; }
   .nd-button-cta:active {
-    padding-top: 1.4em; }
+    padding-top: 1.1em; }
   .nd-button-cta:disabled {
     opacity: 0.5;
     cursor: not-allowed; }
@@ -247,6 +247,11 @@
   right: 30px;
   width: 50px;
   z-index: 999; }
+  @media only screen and (max-width: 800px) {
+    .nd-scrollup {
+      right: auto;
+      left: 10px;
+      bottom: 10px; } }
   .nd-scrollup:hover {
     fill: rgba(255, 255, 255, 0.1);
     stroke: #48d9b3; }
@@ -329,7 +334,7 @@
     @media only screen and (max-width: 800px) {
       .nd-about__column {
         width: 100%;
-        padding-top: 0; } }
+        padding: 0 0 75px; } }
   .nd-about__header {
     text-transform: uppercase;
     font-size: 3.6rem;
@@ -379,7 +384,10 @@
       .nd-about__media-title {
         left: 0;
         top: auto;
-        bottom: 0; } }
+        bottom: 0;
+        text-align: left;
+        padding-right: 15px;
+        padding-left: 15px; } }
   .nd-about--text-left .nd-about__media-title {
     left: -40%;
     right: auto;
@@ -387,12 +395,15 @@
     @media only screen and (max-width: 800px) {
       .nd-about--text-left .nd-about__media-title {
         left: auto;
-        right: 0; } }
+        right: 0;
+        text-align: right;
+        padding-right: 15px;
+        padding-left: 15px; } }
   .nd-about--text-left .nd-about__list {
     padding: 0 17% 0 0; }
     @media only screen and (max-width: 800px) {
       .nd-about--text-left .nd-about__list {
-        padding: 0; } }
+        padding: 0 5px; } }
 
 .nd-advantages {
   background-color: #fff; }
@@ -404,6 +415,7 @@
     background-image: url("../images/jpg/advantages.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     margin: 0 -10px;
     text-align: center; }
     .nd-advantages-header__title {
@@ -422,10 +434,15 @@
     .nd-advantages-header__description {
       font-size: 2.8rem;
       color: #fff;
-      line-height: 1.64; }
+      line-height: 1.64;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto; }
       @media only screen and (max-width: 800px) {
         .nd-advantages-header__description {
-          font-size: 1.8rem; } }
+          font-size: 1.8rem;
+          padding-left: 10px;
+          padding-right: 10px; } }
     .nd-advantages-header__subheader {
       font-size: 2.4rem;
       text-transform: uppercase;
@@ -625,7 +642,7 @@
     padding: 15px 0; }
   .nd-footer__rights {
     text-align: left;
-    width: 250px; }
+    width: 300px; }
     @media only screen and (max-width: 800px) {
       .nd-footer__rights {
         flex: 1 100%;
@@ -651,7 +668,7 @@
         margin-right: 0; }
   .nd-footer__studio {
     text-align: right;
-    width: 250px; }
+    width: 300px; }
     @media only screen and (max-width: 800px) {
       .nd-footer__studio {
         flex: 1 100%;
@@ -989,12 +1006,12 @@
   .nd-price__table {
     font-size: 1.4rem;
     line-height: 2.6rem;
-    margin-top: 100px;
+    margin-top: 10px;
     border-collapse: collapse;
     border-spacing: 0; }
     @media only screen and (max-width: 800px) {
       .nd-price__table {
-        margin: 60px 15px 0;
+        margin: 60px 10px 0;
         font-size: 1.2rem; } }
     .nd-price__table td,
     .nd-price__table th {
@@ -1012,7 +1029,17 @@
       padding-right: 110px;
       padding-left: 0;
       text-transform: uppercase;
-      text-align: right; }
+      text-align: right;
+      left: 0;
+      position: absolute;
+      top: auto; }
+      @media only screen and (max-width: 800px) {
+        .nd-price__table td:nth-child(1),
+        .nd-price__table th:nth-child(1) {
+          padding-right: 10px;
+          padding-left: 10px;
+          max-width: 250px;
+          width: 250px; } }
     .nd-price__table td:nth-child(4),
     .nd-price__table th:nth-child(4) {
       background-color: #fff; }
@@ -1025,6 +1052,19 @@
   .nd-price__table-header {
     font-size: 1.8rem;
     text-transform: uppercase; }
+  .nd-price__table-wrapper {
+    position: relative; }
+  .nd-price__long-row {
+    height: 6em; }
+  .nd-price__table-scroller {
+    margin-left: 390px;
+    overflow-x: scroll;
+    overflow-y: visible;
+    width: calc(100% - $title-column-width); }
+    @media only screen and (max-width: 800px) {
+      .nd-price__table-scroller {
+        margin-left: 250px;
+        width: calc(100% - $title-column-width-small); } }
   .nd-price__fail-icon {
     display: inline-block;
     width: 1.4rem;
@@ -1105,7 +1145,7 @@
 .nd-reviews {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 80px 10px; }
+  padding: 80px 10px 15px; }
   @media only screen and (max-width: 800px) {
     .nd-reviews {
       padding: 50px 0 0; } }
@@ -1571,7 +1611,7 @@
       stroke-width: 3; }
 
 .nd-team {
-  padding: 150px 0 100px; }
+  padding: 100px 0; }
   @media only screen and (max-width: 800px) {
     .nd-team {
       padding: 50px 0 30px; } }

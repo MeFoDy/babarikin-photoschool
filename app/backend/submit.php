@@ -32,9 +32,9 @@ if ($phone !== '') {
 <p>
 <strong>Имя:</strong> {$name} <br>
 
-<strong>Телефон:</strong> {$phone} <br>
+<strong>Телефон:</strong> {$phone} <br><br>
 
-<strong>Имя формы:</strong> {$theme} <br>
+<strong>Имя формы:</strong> {$theme} <br><br>
 
 <strong>Дополнительные значения:</strong><br>
 HTTP_REFERER: {$_SERVER["HTTP_REFERER"]}<br>

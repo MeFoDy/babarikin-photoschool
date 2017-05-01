@@ -7,7 +7,6 @@ $(function () {
     });
 
     // Load user settings
-    // 159&nbsp;рублей
     var ws = window.statSettings;
     var rubleForms = ["рубль", "рубля", "рублей"];
     $('.price__intensive-new').html(ws.intensivePrice + "&nbsp;" + getNumEnding(ws.intensivePrice, rubleForms));
@@ -72,6 +71,7 @@ $(function () {
         }
     });
 
+    // Reviews slider
     $('.nd-flex-composite-grid__item').click(function () {
         var isActive = $(this).hasClass("active");
         $('.nd-flex-composite-grid__item').removeClass("active");
@@ -213,11 +213,9 @@ $(function () {
         width: '900px'
     }));
     $(["#nd-free-gift-form",
-        "#nd-courses-form",
-        "#nd-price-courses-form",
         "#nd-call-form",
         "#nd-success-gift-form",
-        "#nd-menu-form",
+        "#nd-success-form",
         "#nd-gift-form",
         "#nd-course-standart"
     ].join(", ")).iziModal(baseModalSettings);
@@ -225,12 +223,6 @@ $(function () {
         trigger: '.nd-terms__trigger',
         target: '#nd-terms'
     }, {
-        trigger: '.nd-courses-form__trigger',
-        target: '#nd-courses-form'
-    }, {
-        target: '#nd-price-courses-form'
-    }, {
-        trigger: '.nd-call-form__trigger',
         target: '#nd-call-form'
     }, {
         trigger: '.nd-menu-form__trigger',
@@ -240,6 +232,8 @@ $(function () {
         target: '#nd-more'
     }, {
         target: "#nd-free-gift-form"
+    }, {
+        target: "#nd-success-form"
     }, {
         target: "#nd-success-gift-form"
     }, {
@@ -257,13 +251,14 @@ $(function () {
         }
     });
 
-    // Courses table buttons
-    $(document).on('click', '.nd-price__btn', function () {
+    // Call form buttons
+    $(document).on('click', '.nd-call-form__btn', function () {
         var $button = $(this);
-        var courseName = $button.attr("data-course");
-        var $form = $("#nd-price-courses-form");
-        $form.find('.nd-price-course-name').text(courseName);
-        $form.find('button.nd-submit').attr("data-theme", "Заявка на " + courseName);
+        var theme = $button.attr("data-theme");
+        var emailTheme = $button.attr("data-email-theme");
+        var $form = $("#nd-call-form");
+        $form.find('.nd-block-header__header').text(theme);
+        $form.find('button.nd-submit').attr("data-theme", emailTheme);
         $form.iziModal("open");
     });
 
@@ -292,36 +287,25 @@ $(function () {
         $('#nd-gift-form').iziModal('open');
     });
 
-    $(document).on('click', '.shots__btn', function (event) {
+    $(document).on('click', '.gift__btn', function (event) {
         var $button = $(this);
-        var $container = $button.parent('.nd-contact-form');
-        var name = $container.find('input[id$="__name"]').val();
+        var $container = $(this).parent('.nd-contact-form');
+        var email = $container.find('input[id$="__email"]').val();
+        var name = $container.find('input[id$="__name"]').val() || "";
         if (name) {
             $('input[id$="__name"]').val(name);
         }
-        var email = $container.find('input[id$="__email"]').val();
         if (email) {
-            $button.attr('disabled', 'disabled');
+            $('input[id$="__email"]').val(email);
             storeToLocalstorage(name, null, email);
-            $.post("./backend/subscribeShots.php", {
-                email: email,
-                name: name
-            }).done(function (data) {
-                $button.removeAttr('disabled');
-            });
-        }
-    });
-
-    $(document).on('click', '.gift__btn', function (event) {
-        var $container = $(this).parent('.nd-contact-form');
-        var email = $container.find('input[id$="__email"]').val();
-        if (email) {
-            $('#nd-gift-form').iziModal('close');
-            storeToLocalstorage(null, null, email);
+            $button.attr('disabled', 'disabled');
             $.post("./backend/subscribe.php", {
                 email: email
             }).done(function (data) {
-                // do nothing
+                $('#nd-gift-form').iziModal('close');
+                $('#nd-success-form').iziModal('open');
+            }).always(function () {
+                $button.removeAttr('disabled');
             });
         }
     });
@@ -331,7 +315,7 @@ $(function () {
 
     // Submit button handler
     $(document).on('click', '.nd-submit', function (event) {
-        if ($(this).hasClass('gift__btn') || $(this).hasClass('shots__btn')) {
+        if ($(this).hasClass('gift__btn')) {
             return;
         }
         var $button = $(this);
@@ -355,7 +339,6 @@ $(function () {
                 name: name,
                 phone: phone
             }).done(function (data) {
-                $button.removeAttr('disabled');
                 if (data == "OK") {
                     iziForms.forEach(function (iziForm) {
                         $(iziForm.target).iziModal('close');
@@ -368,6 +351,8 @@ $(function () {
                         phone: phone
                     });
                 }
+            }).always(function () {
+                $button.removeAttr('disabled');
             });
         }
     });

@@ -4,7 +4,7 @@ date_default_timezone_set('Etc/UTC');
 require 'lib/PHPMailerAutoload.php';
 
 function sendMail($email) {
-  $theme = 'Подписка на бесплатную рассылку для фотографов';
+  $theme = 'Рецепт в подарок';
 
   $mail = new PHPMailer;
   $mail->CharSet = "UTF-8";
@@ -41,42 +41,28 @@ if ($email !== '') {
   $user_email = $email;
   $user_lists = "xxxxxx"; // бесплатное пособие для фотографов
   $user_ip = $_SERVER["REMOTE_ADDR"];
-  $user_tag = urlencode("blenda.by - gift");
 
   $POST = array (
-    'api_key' => $api_key,
-    'list_ids' => $user_lists,
-    'fields[email]' => $user_email,
-    'request_ip' => $user_ip,
-    'tags' => $user_tag
+    "email" => $user_email,
+    "campaign" => array (
+        "campaignId" => $user_lists
+    ),
+    "ipAddress" => $user_ip
   );
+  $data_string = json_encode($POST);
 
-  $ch = curl_init();
+  $ch = curl_init('https://api.getresponse.com/v3/contacts');
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $POST);
-  curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-  curl_setopt($ch, CURLOPT_URL, 'http://api.unisender.com/ru/api/subscribe?format=json');
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Content-Length: ' . strlen($data_string),
+      'X-Auth-Token: api-key ' . $api_key )
+  );
   $result = curl_exec($ch);
-
-  if ($result) {
-    $jsonObj = json_decode($result);
-
-    if(null===$jsonObj) {
-      // Ошибка в полученном ответе
-      echo "Invalid JSON";
-    }
-    elseif(!empty($jsonObj->error)) {
-      // Ошибка добавления пользователя
-      echo "An error occured: " . $jsonObj->error . "(code: " . $jsonObj->code . ")";
-    } else {
-      // Новый пользователь успешно добавлен
-      echo "Added. ID is " . $jsonObj->result->person_id;
-    }
-  } else {
-    // Ошибка соединения с API-сервером
-    echo "API access error";
-  }
+  echo $result;
 
   sendMail($email);
 }
+
