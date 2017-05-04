@@ -928,7 +928,8 @@
   width: 100vw; }
   .nd-menu-form__list {
     list-style: none;
-    margin: 0; }
+    margin: 0;
+    padding: 0; }
     .nd-menu-form__list__item {
       padding-bottom: 2rem; }
       .nd-menu-form__list__item a {

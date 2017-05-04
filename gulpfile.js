@@ -1,7 +1,8 @@
 ﻿require('es6-promise').polyfill();
 
 var gulp = require('gulp');
-var cssnano = require('gulp-cssnano'),
+var cachebust = require('gulp-cache-bust'),
+    cssnano = require('gulp-cssnano'),
     del = require('del'),
     gulpIf = require('gulp-if'),
     gutil = require('gulp-util'),
@@ -67,8 +68,14 @@ gulp.task('build:sass', function() {
         }))
 });
 
+gulp.task('build:cache-bust', function() {
+    gulp.src('./dist/index.html')
+        .pipe(cachebust())
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('build', function() {
-    runSequence('clean:dist', 'build:sass', ['useref', 'copy:fonts', 'copy:lightbox:images', 'copy:images', 'copy:js', 'copy:backend'], function() {
+    runSequence('clean:dist', 'build:sass', ['useref', 'copy:fonts', 'copy:lightbox:images', 'copy:images', 'copy:js', 'copy:backend'], 'build:cache-bust', function() {
         gutil.log(gutil.colors.green('✔ ') + 'Build has been completed');
     });
 });

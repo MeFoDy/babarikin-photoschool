@@ -217,6 +217,7 @@ $(function () {
         "#nd-success-gift-form",
         "#nd-success-form",
         "#nd-gift-form",
+        "#nd-menu-form",
         "#nd-course-standart"
     ].join(", ")).iziModal(baseModalSettings);
     var iziForms = [{
