@@ -8,7 +8,7 @@
     padding: 80px 10px 15px;
 
     @include respond-to(phones) {
-        padding: 50px 0 0;
+        padding: 0;
     }
 
     &__prev, &__next {

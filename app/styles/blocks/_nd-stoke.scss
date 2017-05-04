@@ -3,7 +3,7 @@
     background: $color--grey;
 
     @include respond-to(phones) {
-        padding: 40px 0 50px;
+        padding: 0 0 50px;
     }
 
     &__btn {

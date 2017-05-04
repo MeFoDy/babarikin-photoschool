@@ -44,6 +44,7 @@ if ($email !== '') {
 
   $POST = array (
     "email" => $user_email,
+    "dayOfCycle" => 0,
     "campaign" => array (
         "campaignId" => $user_lists
     ),

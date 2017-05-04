@@ -3,7 +3,7 @@
     background-color: $color--grey;
 
     @include respond-to(phones) {
-        padding: 30px 0 0;
+        padding: 0;
     }
 
     &__google-map {
@@ -27,7 +27,6 @@
                 flex: 1 100%;
                 margin-bottom: 20px;
             }
-
 
             &__icon {
                 color: $color--primary;

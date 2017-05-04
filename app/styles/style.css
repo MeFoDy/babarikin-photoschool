@@ -344,7 +344,8 @@
     margin-bottom: 40px; }
     @media only screen and (max-width: 800px) {
       .nd-about__header {
-        font-size: 2.4rem; } }
+        font-size: 2.4rem;
+        margin-top: 40px; } }
   .nd-about__text {
     line-height: 1.5;
     font-size: 2rem; }
@@ -411,6 +412,10 @@
     padding: 80px 0 40px 0;
     max-width: 1140px;
     margin: auto; }
+    @media only screen and (max-width: 800px) {
+      .nd-advantages__container {
+        padding-top: 40px;
+        padding-bottom: 10px; } }
   .nd-advantages-header {
     background-image: url("../images/jpg/advantages.jpg");
     background-size: cover;
@@ -467,7 +472,7 @@
   background-color: #fafafa; }
   @media only screen and (max-width: 800px) {
     .nd-contact {
-      padding: 30px 0 0; } }
+      padding: 0; } }
   .nd-contact__google-map {
     height: 520px;
     width: 100%; }
@@ -988,7 +993,7 @@
   padding-top: 80px; }
   @media only screen and (max-width: 800px) {
     .nd-price {
-      padding: 30px 0; } }
+      padding: 0 0 30px 0; } }
   .nd-price__container {
     margin: 0 auto;
     max-width: 1140px;
@@ -1011,8 +1016,9 @@
     border-spacing: 0; }
     @media only screen and (max-width: 800px) {
       .nd-price__table {
-        margin: 60px 10px 0;
-        font-size: 1.2rem; } }
+        margin: 10px 0 0;
+        font-size: 1rem;
+        line-height: 1.5; } }
     .nd-price__table td,
     .nd-price__table th {
       border: none;
@@ -1036,10 +1042,10 @@
       @media only screen and (max-width: 800px) {
         .nd-price__table td:nth-child(1),
         .nd-price__table th:nth-child(1) {
-          padding-right: 10px;
-          padding-left: 10px;
-          max-width: 250px;
-          width: 250px; } }
+          padding-right: 0;
+          padding-left: 0;
+          max-width: 200px;
+          width: 200px; } }
     .nd-price__table td:nth-child(4),
     .nd-price__table th:nth-child(4) {
       background-color: #fff; }
@@ -1063,7 +1069,7 @@
     width: calc(100% - $title-column-width); }
     @media only screen and (max-width: 800px) {
       .nd-price__table-scroller {
-        margin-left: 250px;
+        margin-left: 200px;
         width: calc(100% - $title-column-width-small); } }
   .nd-price__fail-icon {
     display: inline-block;
@@ -1148,7 +1154,7 @@
   padding: 80px 10px 15px; }
   @media only screen and (max-width: 800px) {
     .nd-reviews {
-      padding: 50px 0 0; } }
+      padding: 0; } }
   .nd-reviews__prev, .nd-reviews__next {
     display: none;
     color: #bebebe;
@@ -1292,6 +1298,9 @@
 .nd-services {
   padding: 80px 0 0 0;
   background: #fafafa; }
+  @media only screen and (max-width: 800px) {
+    .nd-services {
+      padding-top: 0; } }
   .nd-services__bg-item {
     transition: all 0.2s ease;
     display: block;
@@ -1572,7 +1581,7 @@
   background: #fafafa; }
   @media only screen and (max-width: 800px) {
     .nd-stoke {
-      padding: 40px 0 50px; } }
+      padding: 0 0 50px; } }
   .nd-stoke__btn {
     margin-top: 25px;
     padding: 10px;
@@ -1614,7 +1623,7 @@
   padding: 100px 0; }
   @media only screen and (max-width: 800px) {
     .nd-team {
-      padding: 50px 0 30px; } }
+      padding: 0 0 30px; } }
   .nd-team .nd-block-header__subheader {
     max-width: 900px; }
   .nd-team__container {
