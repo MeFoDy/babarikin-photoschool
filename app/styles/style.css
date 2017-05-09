@@ -1009,6 +1009,11 @@
     left: 0;
     width: 195px;
     text-align: center; }
+  .nd-price--mobile {
+    display: none; }
+    @media only screen and (max-width: 800px) {
+      .nd-price--mobile {
+        display: block; } }
   .nd-price__table {
     font-size: 1.4rem;
     line-height: 2.6rem;
@@ -1018,7 +1023,7 @@
     @media only screen and (max-width: 800px) {
       .nd-price__table {
         margin: 10px 0 0;
-        font-size: 1rem;
+        font-size: 1.2rem;
         line-height: 1.5; } }
     .nd-price__table td,
     .nd-price__table th {
@@ -1061,6 +1066,9 @@
     text-transform: uppercase; }
   .nd-price__table-wrapper {
     position: relative; }
+    @media only screen and (max-width: 800px) {
+      .nd-price__table-wrapper {
+        display: none; } }
   .nd-price__long-row {
     height: 6em; }
   .nd-price__table-scroller {
@@ -1148,6 +1156,85 @@
     font-size: 1.3rem; }
     .nd-price__btn:active {
       padding-top: 1.2rem; }
+  .nd-price__table--mobile {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border-spacing: 0; }
+    .nd-price__table--mobile td {
+      border: none;
+      padding: 15px 10px;
+      box-sizing: border-box;
+      width: 50%;
+      vertical-align: middle;
+      text-align: center; }
+      .nd-price__table--mobile td:nth-child(1) {
+        text-transform: uppercase;
+        text-align: right;
+        padding-right: 0;
+        padding-left: 0; }
+    .nd-price__table--mobile .nd-price__weeks {
+      font-size: 1.4rem; }
+    .nd-price__table--mobile .nd-price__hours {
+      font-size: 1.2rem;
+      margin: 5px auto; }
+    .nd-price__table--mobile .nd-price__description {
+      font-size: 1.2rem; }
+  .nd-price__slide {
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 40px; }
+  .nd-price__slide-header {
+    color: #48d9b3;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.6rem;
+    padding-bottom: 15px;
+    position: relative; }
+    .nd-price__slide-header-hit::before {
+      content: 'Хит';
+      color: #545758;
+      font-size: 1rem;
+      display: block;
+      position: absolute;
+      bottom: 4.5rem;
+      width: 100%;
+      text-align: center; }
+  .nd-price__slide-footer {
+    text-align: center;
+    margin: 40px auto 0; }
+    .nd-price__slide-footer .nd-price__btn {
+      width: 90%;
+      font-size: 1.4rem;
+      margin-top: 40px; }
+  .nd-price__slide-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto; }
+  .nd-price__slide-prev {
+    text-align: right; }
+  .nd-price__slide-next {
+    text-align: left; }
+  .nd-price__slide-prev, .nd-price__slide-next {
+    transition: all 0.2s ease;
+    display: block;
+    width: 80px;
+    align-self: stretch;
+    cursor: pointer;
+    padding: 10px 30px; }
+    .nd-price__slide-prev svg, .nd-price__slide-next svg {
+      width: 20px;
+      fill: #bebebe;
+      transition: all 0.2s ease; }
+    .nd-price__slide-prev:hover, .nd-price__slide-next:hover {
+      background: #fafafa; }
+      .nd-price__slide-prev:hover svg, .nd-price__slide-next:hover svg {
+        fill: #48d9b3; }
+  .nd-price__row-top td {
+    vertical-align: top; }
 
 .nd-reviews {
   max-width: 1140px;

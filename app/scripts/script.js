@@ -167,6 +167,21 @@ $(function () {
         }
     });
 
+    // Swiper Prices initialization
+    var pricesSwiper = new Swiper('.nd-price__swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        grabCursor: false,
+        loop: true,
+        uniqueNavElements: false,
+    });
+    $(document).on('click', '.nd-price__slide-next', function () {
+        pricesSwiper.slideNext();
+    });
+    $(document).on('click', '.nd-price__slide-prev', function () {
+        pricesSwiper.slidePrev();
+    });
+
     // Init popups
     var openedPopups = [];
     var isInOpening = false;
