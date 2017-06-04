@@ -306,6 +306,14 @@
       left: -50vw;
       height: 100%;
       z-index: -1; }
+  .nd-about__breacrumb {
+    display: inline-block;
+    margin-top: 1em; }
+    .nd-about__breacrumb a {
+      color: #545758;
+      transition: all 0.2s ease; }
+      .nd-about__breacrumb a:hover {
+        color: #48d9b3; }
   .nd-about__social {
     list-style: none;
     margin: 20px 0;
@@ -633,14 +641,15 @@
 .nd-footer {
   background-color: #282828;
   padding-left: 10px;
-  padding-right: 10px; }
+  padding-right: 10px;
+  width: 100vw; }
   .nd-footer__container {
     align-items: center;
     color: #fff;
     display: flex;
     flex-wrap: wrap;
     font-size: 1.6rem;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0 auto;
     max-width: 1140px;
     min-height: 115px;
@@ -652,6 +661,15 @@
       .nd-footer__rights {
         flex: 1 100%;
         text-align: center; } }
+  .nd-footer__reviews {
+    text-align: center;
+    width: 300px; }
+    @media only screen and (max-width: 800px) {
+      .nd-footer__reviews {
+        border-bottom: 1px dotted #545758;
+        flex: 1 100%;
+        margin: 0 auto 15px;
+        padding: 15px 0; } }
   .nd-footer__social {
     text-align: center;
     width: 250px; }
@@ -660,7 +678,7 @@
         border-bottom: 1px dotted #545758;
         border-top: 1px dotted #545758;
         flex: 1 100%;
-        margin: 15px auto;
+        margin: 15px auto 0;
         padding: 15px 0; } }
     .nd-footer__social-icon {
       transition: all 0.2s ease;
@@ -672,8 +690,8 @@
       .nd-footer__social-icon:last-child {
         margin-right: 0; }
   .nd-footer__studio {
-    text-align: right;
-    width: 300px; }
+    text-align: center;
+    width: 250px; }
     @media only screen and (max-width: 800px) {
       .nd-footer__studio {
         flex: 1 100%;
@@ -1073,7 +1091,7 @@
     height: 6em; }
   .nd-price__table-scroller {
     margin-left: 390px;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: visible;
     width: calc(100% - $title-column-width); }
     @media only screen and (max-width: 800px) {

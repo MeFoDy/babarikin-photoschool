@@ -453,8 +453,8 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('google-map'), {
         center: {
-            lat: 53.903467,
-            lng: 27.563767
+            lat: 53.890474,
+            lng: 27.568485
         },
         zoom: 17,
         scrollwheel: false,
@@ -470,8 +470,8 @@ function initMap() {
     });
     var marker = new google.maps.Marker({
         position: {
-            lat: 53.903467,
-            lng: 27.563767
+            lat: 53.890474,
+            lng: 27.568485
         },
         map: map,
         title: 'Фотошкола Павла Бабарыкина',
@@ -482,7 +482,7 @@ function initMap() {
         '</div>' +
         '<h1 id="firstHeading" class="firstHeading">Фотошкола Павла Бабарыкина</h1>' +
         '<div id="bodyContent">' +
-        '<p>пр. Независимости, 25</p>' +
+        '<p>ул. Октябрьская, д.&nbsp;16, к.&nbsp;4</p>' +
         '</div>' +
         '</div>';
     var infowindow = new google.maps.InfoWindow({
