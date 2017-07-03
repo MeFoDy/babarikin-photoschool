@@ -307,7 +307,7 @@ $(function () {
         var $button = $(this);
         var $container = $(this).parent('.nd-contact-form');
         var email = $container.find('input[id$="__email"]').val();
-        var name = $container.find('input[id$="__name"]').val() || "";
+        var name = $container.find('input[id$="__name"]').val() || localStorage['client_name'] || "";
         if (name) {
             $('input[id$="__name"]').val(name);
         }
@@ -316,7 +316,8 @@ $(function () {
             storeToLocalstorage(name, null, email);
             $button.attr('disabled', 'disabled');
             $.post("./backend/subscribe.php", {
-                email: email
+                email: email,
+                name: name
             }).done(function (data) {
                 $('#nd-gift-form').iziModal('close');
                 $('#nd-success-form').iziModal('open');

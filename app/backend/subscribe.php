@@ -32,6 +32,7 @@ EOT;
 }
 
 $email = isset($_POST['email']) ? $_POST['email'] : '';
+$name = isset($_POST['name']) ? $_POST['name'] : '';
 
 if ($email !== '') {
   // Ключ доступа к API (из Личного Кабинета)
@@ -40,6 +41,7 @@ if ($email !== '') {
   // Данные о новом подписчике
   $user_email = $email;
   $user_lists = "xxxxxx"; // бесплатное пособие для фотографов
+  $user_name = $name;
   $user_ip = $_SERVER["REMOTE_ADDR"];
 
   $POST = array (
@@ -50,6 +52,9 @@ if ($email !== '') {
     ),
     "ipAddress" => $user_ip
   );
+  if ($user_name !== '') {
+    $POST["name"] = $user_name;
+  }
   $data_string = json_encode($POST);
 
   $ch = curl_init('https://api.getresponse.com/v3/contacts');
