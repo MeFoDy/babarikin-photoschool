@@ -216,12 +216,15 @@ $(function () {
     });
 
     $(document).on('click', '.gift__btn', function (event) {
-        var $container = $(this).closest('.nd-contact-form');
+        var $button = $(this);
+        var $container = $button.closest('.nd-contact-form');
         var email = $container.find('input[id$="__email"]').val();
         var name = $container.find('input[id$="__name"]').val();
+        var analyticsTag = $button.attr('data-analytics');
         if (email) {
             $('#nd-gift-form').iziModal('close');
             storeToLocalstorage(name, null, email);
+            $button.attr('disabled', 'disabled');
             $.post("/backend/subscribe.php", {
                 name: name,
                 email: email
@@ -230,6 +233,12 @@ $(function () {
                     $(iziForm.target).iziModal('close');
                 });
                 $('#nd-approve-subscribe-form').iziModal('open');
+                if (analyticsTag) {
+                    gaForm(analyticsTag);
+                    yaGoal(analyticsTag);
+                }
+            }).always(function () {
+                $button.removeAttr('disabled');
             });
         }
     });
@@ -242,11 +251,13 @@ $(function () {
         if ($(this).hasClass('gift__btn')) {
             return;
         }
-        var $container = $(this).closest('.nd-contact-form');
+        var $button = $(this);
+        var $container = $button.closest('.nd-contact-form');
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
         var email = $container.find('input[id$="__email"]').val();
-        var theme = $(this).attr('data-theme');
+        var theme = $button.attr('data-theme');
+        var analyticsTag = $button.attr('data-analytics');
         if (name) {
             $('input[id$="__name"]').val(name);
         }
@@ -260,6 +271,7 @@ $(function () {
 
         function submitForm(theme, name, phone, email) {
             storeToLocalstorage(name, phone, email);
+            $button.attr('disabled', 'disabled');
             $.post("/backend/submit.php", {
                 theme: theme,
                 name: name,
@@ -271,14 +283,21 @@ $(function () {
                         $(iziForm.target).iziModal('close');
                     });
                     $('#nd-success-gift-form').iziModal('open');
-                    gaTrack('/success.html');
-                    yaHit('/success.html');
+                    if (analyticsTag) {
+                        gaForm(analyticsTag);
+                        yaGoal(analyticsTag);
+                    } else {
+                        gaTrack('/success.html');
+                        yaHit('/success.html');
+                    }
                     fbq('track', 'success', {
                         name: name,
                         phone: phone,
                         email: email
                     });
                 }
+            }).always(function () {
+                $button.removeAttr('disabled');
             });
         }
     });

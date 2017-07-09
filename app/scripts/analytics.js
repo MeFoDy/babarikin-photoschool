@@ -14,6 +14,12 @@ function gaTrack(page) {
     }
 }
 
+function gaForm(form) {
+    if (ga && typeof ga === "function") {
+        ga('sendform', form);
+    }
+}
+
 // Yandex Metrika
 (function(d, w, c) {
     (w[c] = w[c] || []).push(function() {
@@ -47,6 +53,12 @@ function gaTrack(page) {
 function yaHit(page) {
     if (window.yaCounter28052760) {
         window.yaCounter28052760.hit(page);
+    }
+}
+
+function yaGoal(form) {
+    if (window.yaCounter28052760) {
+        yaCounter28052760.reachGoal(form);
     }
 }
 
