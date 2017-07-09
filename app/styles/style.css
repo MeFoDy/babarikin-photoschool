@@ -648,12 +648,12 @@
       .nd-gift__discount {
         flex: 1 100%;
         padding-bottom: 50px; } }
-    .nd-gift__discount__header {
+    .nd-gift__discount__header h1 {
       color: #fff;
       font-size: 4.2rem;
       position: relative;
       line-height: 1.42857; }
-      .nd-gift__discount__header:after {
+      .nd-gift__discount__header h1:after {
         display: block;
         position: absolute;
         content: '';
@@ -663,7 +663,7 @@
         height: 2px;
         background: #48d9b3; }
       @media only screen and (max-width: 800px) {
-        .nd-gift__discount__header {
+        .nd-gift__discount__header h1 {
           font-size: 3rem; } }
     .nd-gift__discount__description {
       color: #fff;
@@ -892,7 +892,8 @@
 
 .nd-learning {
   padding: 80px 0 80px 0;
-  background: #f0f0f0; }
+  background: #f0f0f0;
+  overflow-x: hidden; }
   .nd-learning__list {
     display: flex;
     flex-wrap: wrap;
