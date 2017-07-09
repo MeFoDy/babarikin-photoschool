@@ -1,30 +1,4 @@
 $(function () {
-    // Lightbox options
-    lightbox.option({
-        albumLabel: "Фото %1 из %2",
-        wrapAround: true,
-        disableScrolling: true
-    });
-
-    // Load user settings
-    var ws = window.statSettings;
-    var rubleForms = ["рубль", "рубля", "рублей"];
-    $('.price__intensive-new').html(ws.intensivePrice + "&nbsp;" + getNumEnding(ws.intensivePrice, rubleForms));
-    $('.price__intensive-old').html(ws.intensiveOldPrice + "&nbsp;" + getNumEnding(ws.intensiveOldPrice, rubleForms));
-    $('.price__intensive-economy').html(ws.intensiveEconomy);
-    $('.price__intensive-date').html(ws.intensiveEndDate);
-
-    $('.price__base-new').html(ws.basePrice + "&nbsp;" + getNumEnding(ws.basePrice, rubleForms));
-    $('.price__base-old').html(ws.baseOldPrice + "&nbsp;" + getNumEnding(ws.baseOldPrice, rubleForms));
-    $('.price__base-economy').html(ws.baseEconomy);
-    $('.price__base-date').html(ws.baseEndDate);
-
-    $('.price__standart-new').html(ws.standartPrice + "&nbsp;" + getNumEnding(ws.standartPrice, rubleForms));
-    $('.price__standart-old').html(ws.standartOldPrice + "&nbsp;" + getNumEnding(ws.standartOldPrice, rubleForms));
-    $('.price__standart-economy').html(ws.standartEconomy);
-    $('.price__standart-date').html(ws.standartEndDate);
-
-    $('.price__premium-new').html(ws.premiumPrice + "&nbsp;" + getNumEnding(ws.premiumPrice, rubleForms));
 
     //Fixed navigation
     var $menu = $(".nd-header");
@@ -272,9 +246,12 @@ $(function () {
         var $button = $(this);
         var theme = $button.attr("data-theme");
         var emailTheme = $button.attr("data-email-theme");
+        var analyticsForm = $button.attr('data-analytics');
         var $form = $("#nd-call-form");
         $form.find('.nd-block-header__header').text(theme);
-        $form.find('button.nd-submit').attr("data-theme", emailTheme);
+        $form.find('button.nd-submit')
+            .attr("data-theme", emailTheme)
+            .attr("data-analytics", analyticsForm);
         $form.iziModal("open");
     });
 
@@ -308,6 +285,7 @@ $(function () {
         var $container = $(this).parent('.nd-contact-form');
         var email = $container.find('input[id$="__email"]').val();
         var name = $container.find('input[id$="__name"]').val() || localStorage['client_name'] || "";
+        var analyticsForm = $button.attr('data-analytics');
         if (name) {
             $('input[id$="__name"]').val(name);
         }
@@ -321,6 +299,10 @@ $(function () {
             }).done(function (data) {
                 $('#nd-gift-form').iziModal('close');
                 $('#nd-success-form').iziModal('open');
+                if (analyticsForm) {
+                    gaForm(analyticsForm);
+                    yaGoal(analyticsForm);
+                }
             }).always(function () {
                 $button.removeAttr('disabled');
             });
@@ -340,6 +322,7 @@ $(function () {
         var phone = $container.find('input[id$="__phone"]').val();
         var name = $container.find('input[id$="__name"]').val();
         var theme = $button.attr('data-theme');
+        var analyticsForm = $button.attr('data-analytics');
         if (name) {
             $('input[id$="__name"]').val(name);
         }
@@ -361,8 +344,13 @@ $(function () {
                         $(iziForm.target).iziModal('close');
                     });
                     $('#nd-success-gift-form').iziModal('open');
-                    gaTrack('/success.html');
-                    yaHit('/success.html');
+                    if (analyticsForm) {
+                        gaForm(analyticsForm);
+                        yaGoal(analyticsForm);
+                    } else {
+                        gaTrack('/success.html');
+                        yaHit('/success.html');
+                    }
                     fbq('track', 'success', {
                         name: name,
                         phone: phone
@@ -447,52 +435,6 @@ function supports_html5_storage() {
     } catch (e) {
         return false;
     }
-}
-
-var map;
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById('google-map'), {
-        center: {
-            lat: 53.890474,
-            lng: 27.568485
-        },
-        zoom: 17,
-        scrollwheel: false,
-        styles: [{
-            "featureType": "all",
-            "elementType": "all",
-            "stylers": [{
-                "saturation": -100
-            }, {
-                "gamma": 0.5
-            }]
-        }]
-    });
-    var marker = new google.maps.Marker({
-        position: {
-            lat: 53.890474,
-            lng: 27.568485
-        },
-        map: map,
-        title: 'Фотошкола Павла Бабарыкина',
-        icon: 'images/png/placeholder-small.png'
-    });
-    var contentString = '<div id="content">' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h1 id="firstHeading" class="firstHeading">Фотошкола Павла Бабарыкина</h1>' +
-        '<div id="bodyContent">' +
-        '<p>ул. Октябрьская, д.&nbsp;16, к.&nbsp;4</p>' +
-        '</div>' +
-        '</div>';
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 400
-    });
-    marker.addListener('click', function () {
-        infowindow.open(map, marker);
-    });
 }
 
 // Source: https://habrahabr.ru/post/105428/
